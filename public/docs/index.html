@@ -1,0 +1,2488 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Reference</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/all.js"></script>
+
+
+          <script>
+        $(function() {
+            setupLanguages(["bash","javascript"]);
+        });
+      </script>
+      </head>
+
+  <body class="">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+        <img src="images/logo.png" />
+                    <div class="lang-selector">
+                                  <a href="#" data-language-name="bash">bash</a>
+                                  <a href="#" data-language-name="javascript">javascript</a>
+                            </div>
+                            <div class="search">
+              <input type="text" class="search" id="input-search" placeholder="Search">
+            </div>
+            <ul class="search-results"></ul>
+              <div id="toc">
+      </div>
+                    <ul class="toc-footer">
+                                  <li><a href='http://github.com/mpociot/documentarian'>Documentation Powered by Documentarian</a></li>
+                            </ul>
+            </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+          <!-- START_INFO -->
+<h1>Info</h1>
+<p>Welcome to the generated API reference.
+<a href="http://localhost/docs/collection.json">Get Postman Collection</a></p>
+<!-- END_INFO -->
+<h1>Administration management</h1>
+<p>APIs for managing Administration</p>
+<!-- START_f45f3e14bf7aeace9e260a6de5587ef4 -->
+<h2>Display a listing of Administrations.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/api/administrations" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/administrations"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": [
+        {
+            "id": "ministere@sante.dz",
+            "name": "ministere",
+            "description": null,
+            "wilaya_id": 19
+        }
+    ]
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/administrations</code></p>
+<!-- END_f45f3e14bf7aeace9e260a6de5587ef4 -->
+<!-- START_aba934e97e36c8602f65ef86d9db6bdc -->
+<h2>Store a newly created Administration in storage.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://localhost/api/administrations" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"id":"admin@sante.dz","name":"admin","wilaya_id":16,"password":"98776","description":".......................","address":"Alger"}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/administrations"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "id": "admin@sante.dz",
+    "name": "admin",
+    "wilaya_id": 16,
+    "password": "98776",
+    "description": ".......................",
+    "address": "Alger"
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": {
+        "id": "ministere@sante.dz",
+        "name": "ministere",
+        "description": null,
+        "wilaya_id": 19
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (500):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": {
+        "id": [
+            "The id has already been taken."
+        ]
+    }
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/administrations</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>string</td>
+<td>required</td>
+<td>The id .</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>required</td>
+<td>The firt name of the administration.</td>
+</tr>
+<tr>
+<td><code>wilaya_id</code></td>
+<td>integer</td>
+<td>required</td>
+<td>The wilaya of the administration.</td>
+</tr>
+<tr>
+<td><code>password</code></td>
+<td>string</td>
+<td>required</td>
+<td>The password.</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>string</td>
+<td>optional</td>
+<td>a description of the administration.</td>
+</tr>
+<tr>
+<td><code>address</code></td>
+<td>date</td>
+<td>optional</td>
+<td>address of the administration.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_aba934e97e36c8602f65ef86d9db6bdc -->
+<!-- START_786d8e6445d366722ff7983880f69a5b -->
+<h2>Display the specified Administration.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/api/administrations/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/administrations/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": {
+        "id": "ministere@sante.dz",
+        "name": "ministere",
+        "description": null,
+        "wilaya_id": 19
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": "administration not found"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/administrations/{administration}</code></p>
+<!-- END_786d8e6445d366722ff7983880f69a5b -->
+<!-- START_584482630661e269282f83243eab6077 -->
+<h2>Remove the specified Administration from storage.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE \
+    "http://localhost/api/administrations/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/administrations/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "success",
+    "message": "administration deleted"
+}</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": "administration not found"
+}</code></pre>
+<blockquote>
+<p>Example response (500):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": "Database server error"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>DELETE api/administrations/{administration}</code></p>
+<!-- END_584482630661e269282f83243eab6077 -->
+<!-- START_c23912956fc801b24d36d145a86979f8 -->
+<h2>Login Admin.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://localhost/api/login/administration" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/login/administration"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": {
+        "id": "ministere@sante.dz",
+        "name": "ministere",
+        "description": null,
+        "wilaya_id": 19
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": "administration not found"
+}</code></pre>
+<blockquote>
+<p>Example response (500):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": "Wrong pass word"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/login/administration</code></p>
+<!-- END_c23912956fc801b24d36d145a86979f8 -->
+<h1>Diseases management</h1>
+<p>APIs for managing Diseases</p>
+<!-- START_4fd4cf5470b0085b5d5e98d21c320e93 -->
+<h2>Display a listing of the diseases.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/api/diseases" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/diseases"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": [
+        {
+            "id": "Covid_19",
+            "description": null
+        }
+    ]
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/diseases</code></p>
+<!-- END_4fd4cf5470b0085b5d5e98d21c320e93 -->
+<!-- START_855154e7dcf2e3758e55bb19ae2111a5 -->
+<h2>Store a newly created disease in storage.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://localhost/api/diseases" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"id":"Covid_19","description":"....."}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/diseases"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "id": "Covid_19",
+    "description": "....."
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": {
+        "id": "Covid_19",
+        "description": null
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (500):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": {
+        "id": [
+            "The id has already been taken."
+        ]
+    }
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/diseases</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>string</td>
+<td>required</td>
+<td>The id .</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>string</td>
+<td>optional</td>
+<td>a description of the disease.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_855154e7dcf2e3758e55bb19ae2111a5 -->
+<!-- START_0f13dd56e2f422b434e2d80a20965498 -->
+<h2>Display the specified disease.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/api/diseases/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/diseases/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": {
+        "id": "Covid_19",
+        "description": null
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": "hospital not found"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/diseases/{disease}</code></p>
+<!-- END_0f13dd56e2f422b434e2d80a20965498 -->
+<!-- START_53c602d5d4d0c9fcecad3efe80c87a9c -->
+<h2>Remove the specified disease from storage.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE \
+    "http://localhost/api/diseases/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/diseases/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "success",
+    "message": "disease deleted"
+}</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": "disease not found"
+}</code></pre>
+<blockquote>
+<p>Example response (500):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": "Database server error"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>DELETE api/diseases/{disease}</code></p>
+<!-- END_53c602d5d4d0c9fcecad3efe80c87a9c -->
+<h1>Hospital management</h1>
+<p>APIs for managing Hospital</p>
+<!-- START_8a075e4ecd8a0b915ef37c441067b457 -->
+<h2>Display a listing of the resource.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/api/hospitals" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/hospitals"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": [
+        {
+            "id": "set@sante.dz",
+            "name": "saadna",
+            "description": null,
+            "wilaya_id": 19
+        }
+    ]
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/hospitals</code></p>
+<!-- END_8a075e4ecd8a0b915ef37c441067b457 -->
+<!-- START_0d4a62419cf95816fda538d56aad78f1 -->
+<h2>Store a newly created Hospital in storage.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://localhost/api/hospitals" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"id":"hospital@sante.dz","name":"hospital","wilaya_id":16,"password":"98776","description":".......................","address":"Alger"}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/hospitals"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "id": "hospital@sante.dz",
+    "name": "hospital",
+    "wilaya_id": 16,
+    "password": "98776",
+    "description": ".......................",
+    "address": "Alger"
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": {
+        "id": "bacha@sante.dz",
+        "name": "bacha",
+        "description": null,
+        "wilaya_id": 19
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (500):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": {
+        "id": [
+            "The id has already been taken."
+        ]
+    }
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/hospitals</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>string</td>
+<td>required</td>
+<td>The id .</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>required</td>
+<td>The firt name of the Hospital.</td>
+</tr>
+<tr>
+<td><code>wilaya_id</code></td>
+<td>integer</td>
+<td>required</td>
+<td>The wilaya of the Hospital.</td>
+</tr>
+<tr>
+<td><code>password</code></td>
+<td>string</td>
+<td>required</td>
+<td>The password.</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>string</td>
+<td>optional</td>
+<td>a description of the Hospital.</td>
+</tr>
+<tr>
+<td><code>address</code></td>
+<td>date</td>
+<td>optional</td>
+<td>address of the Hospital.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_0d4a62419cf95816fda538d56aad78f1 -->
+<!-- START_4ede2f67c568c7b6163108f4b170aceb -->
+<h2>Display the specified resource.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/api/hospitals/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/hospitals/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": {
+        "id": "bacha@sante.dz",
+        "name": "bacha",
+        "description": null,
+        "wilaya_id": 19
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": "hospital not found"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/hospitals/{hospital}</code></p>
+<!-- END_4ede2f67c568c7b6163108f4b170aceb -->
+<!-- START_4f0edf60fcef97f880282dec488ef4ed -->
+<h2>Remove the specified resource from storage.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE \
+    "http://localhost/api/hospitals/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/hospitals/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "success",
+    "message": "hospital deleted"
+}</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": "hospital not found"
+}</code></pre>
+<blockquote>
+<p>Example response (500):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": "Database server error"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>DELETE api/hospitals/{hospital}</code></p>
+<!-- END_4f0edf60fcef97f880282dec488ef4ed -->
+<!-- START_7a15ca89be58b1de5830dfe99b21ad74 -->
+<h2>Login hospital.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://localhost/api/login/hospital" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/login/hospital"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": {
+        "id": "bacha@sante.dz",
+        "name": "bacha",
+        "description": null,
+        "wilaya_id": 19
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": "hospital not found"
+}</code></pre>
+<blockquote>
+<p>Example response (500):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": "Wrong pass word"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/login/hospital</code></p>
+<!-- END_7a15ca89be58b1de5830dfe99b21ad74 -->
+<h1>Laboratories management</h1>
+<p>APIs for managing Laboratories</p>
+<!-- START_2a9df5c4e862c34e01aeb44a5d5b5212 -->
+<h2>Display a listing of the resource.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/api/laboratories" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/laboratories"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": [
+        {
+            "id": "ok@sante.dz",
+            "name": "ministere",
+            "description": null,
+            "wilaya_id": 19
+        },
+        {
+            "id": "pascal@sante.dz",
+            "name": "pascal",
+            "description": null,
+            "wilaya_id": 19
+        }
+    ]
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/laboratories</code></p>
+<!-- END_2a9df5c4e862c34e01aeb44a5d5b5212 -->
+<!-- START_0da628cac958381b30589587bc235845 -->
+<h2>Store a newly created Laboratory in storage.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://localhost/api/laboratories" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"id":"labo@sante.dz","name":"labo","wilaya_id":16,"password":"98776","description":".......................","address":"non"}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/laboratories"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "id": "labo@sante.dz",
+    "name": "labo",
+    "wilaya_id": 16,
+    "password": "98776",
+    "description": ".......................",
+    "address": "non"
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": {
+        "id": "pascal@sante.dz",
+        "name": "pascal",
+        "description": null,
+        "wilaya_id": 16
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (500):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": {
+        "id": [
+            "The id has already been taken."
+        ]
+    }
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/laboratories</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>string</td>
+<td>required</td>
+<td>The id .</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>required</td>
+<td>The firt name of the Laboratory.</td>
+</tr>
+<tr>
+<td><code>wilaya_id</code></td>
+<td>integer</td>
+<td>required</td>
+<td>The wilaya of the Laboratory.</td>
+</tr>
+<tr>
+<td><code>password</code></td>
+<td>string</td>
+<td>required</td>
+<td>The password.</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>string</td>
+<td>optional</td>
+<td>a description of the Laboratory.</td>
+</tr>
+<tr>
+<td><code>address</code></td>
+<td>date</td>
+<td>optional</td>
+<td>the address of the laboratory</td>
+</tr>
+</tbody>
+</table>
+<!-- END_0da628cac958381b30589587bc235845 -->
+<!-- START_ab4561ae3ea9f7a93316a4f0bebc02f9 -->
+<h2>Display the specified resource.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/api/laboratories/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/laboratories/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": {
+        "id": "pascal@sante.dz",
+        "name": "pascal",
+        "description": null,
+        "wilaya_id": 16
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": "laboratory not found"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/laboratories/{laboratory}</code></p>
+<!-- END_ab4561ae3ea9f7a93316a4f0bebc02f9 -->
+<!-- START_b84e2ea82e8e017d9e683dfd704c0095 -->
+<h2>Remove the specified resource from storage.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE \
+    "http://localhost/api/laboratories/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/laboratories/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "success",
+    "message": "laboratory deleted"
+}</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": "laboratory not found"
+}</code></pre>
+<blockquote>
+<p>Example response (500):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": "Database server error"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>DELETE api/laboratories/{laboratory}</code></p>
+<!-- END_b84e2ea82e8e017d9e683dfd704c0095 -->
+<!-- START_e6e4034921b80408432429d41a17cfca -->
+<h2>Login Laboratory.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://localhost/api/login/laboratory" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/login/laboratory"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": {
+        "id": "pascal@sante.dz",
+        "name": "pascal",
+        "description": null,
+        "wilaya_id": 16
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": "laboratory not found"
+}</code></pre>
+<blockquote>
+<p>Example response (500):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": "Wrong pass word"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/login/laboratory</code></p>
+<!-- END_e6e4034921b80408432429d41a17cfca -->
+<h1>Patients management</h1>
+<p>APIs for managing Patient</p>
+<!-- START_cdf5e02e9b913556f9304546d59e6c56 -->
+<h2>Display a listing of the resource.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/api/patients" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/patients"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": [
+        {
+            "id": 1,
+            "first_name": "aziz",
+            "last_name": "boutef",
+            "phone": "07779261738",
+            "email": null,
+            "address": null
+        },
+        {
+            "id": 3,
+            "first_name": "ok",
+            "last_name": "boki",
+            "phone": null,
+            "email": "msl",
+            "address": null
+        }
+    ]
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/patients</code></p>
+<!-- END_cdf5e02e9b913556f9304546d59e6c56 -->
+<!-- START_9595666a103e105bb3f677f002653307 -->
+<h2>Store a newly created resource in storage.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://localhost/api/patients" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"first_name":"mohamed","last_name":"habi","phone":"16 98 7767 89","address":"setif","email":"ministere@sante.dz","password":".............."}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/patients"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "first_name": "mohamed",
+    "last_name": "habi",
+    "phone": "16 98 7767 89",
+    "address": "setif",
+    "email": "ministere@sante.dz",
+    "password": ".............."
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": {
+        "id": 1,
+        "first_name": "aziz",
+        "last_name": "boutef",
+        "phone": "07779261738",
+        "email": null,
+        "address": null
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (500):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": {
+        "id": [
+            "The id has already been taken."
+        ]
+    }
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/patients</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>first_name</code></td>
+<td>string</td>
+<td>required</td>
+<td>first_name .</td>
+</tr>
+<tr>
+<td><code>last_name</code></td>
+<td>string</td>
+<td>required</td>
+<td>last_name.</td>
+</tr>
+<tr>
+<td><code>phone</code></td>
+<td>string</td>
+<td>optional</td>
+<td>phone number.</td>
+</tr>
+<tr>
+<td><code>address</code></td>
+<td>string</td>
+<td>optional</td>
+<td>The address.</td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td>string</td>
+<td>optional</td>
+<td>email.</td>
+</tr>
+<tr>
+<td><code>password</code></td>
+<td>string</td>
+<td>optional</td>
+<td>password of the patient.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_9595666a103e105bb3f677f002653307 -->
+<!-- START_e21961238df73c8544f00766ed069000 -->
+<h2>Display the specified resource.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/api/patients/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/patients/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": {
+        "id": 1,
+        "first_name": "aziz",
+        "last_name": "boutef",
+        "phone": "07779261738",
+        "email": null,
+        "address": null
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": "patient not found"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/patients/{patient}</code></p>
+<!-- END_e21961238df73c8544f00766ed069000 -->
+<!-- START_7b1b54123a6d30586c3e445437e73fd5 -->
+<h2>Update the specified resource in storage.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X PUT \
+    "http://localhost/api/patients/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/patients/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": {
+        "id": 1,
+        "first_name": "aziz",
+        "last_name": "boutef",
+        "phone": "07779261738",
+        "email": null,
+        "address": null
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": "patient not found"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>PUT api/patients/{patient}</code></p>
+<p><code>PATCH api/patients/{patient}</code></p>
+<!-- END_7b1b54123a6d30586c3e445437e73fd5 -->
+<!-- START_91030317441de3d43a948f7948db4fe7 -->
+<h2>Remove the specified patient from storage.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE \
+    "http://localhost/api/patients/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/patients/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "success",
+    "message": "patient deleted"
+}</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": "patient not found"
+}</code></pre>
+<blockquote>
+<p>Example response (500):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": "Database server error"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>DELETE api/patients/{patient}</code></p>
+<!-- END_91030317441de3d43a948f7948db4fe7 -->
+<h1>Tests management</h1>
+<p>APIs for managing Tests</p>
+<!-- START_0bef4e738c9d6720ad43b062015d1078 -->
+<h2>Display a listing of the resource.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/api/test" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/test"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": [
+        {
+            "id": 1,
+            "disease_id": "Covid_19",
+            "patient_id": 3,
+            "hospital_id": "set@sante.dz",
+            "laboratory_id": "pascal@sante.dz",
+            "positif": 1
+        },
+        {
+            "id": 2,
+            "disease_id": "Covid_19",
+            "patient_id": 1,
+            "hospital_id": "set@sante.dz",
+            "laboratory_id": "pascal@sante.dz",
+            "positif": null
+        }
+    ]
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/test</code></p>
+<!-- END_0bef4e738c9d6720ad43b062015d1078 -->
+<!-- START_50c0a334d57bffdf48ce568bad023ce0 -->
+<h2>Store a newly created Test in storage.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://localhost/api/test" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"disease_id":"Covid_19","patient_id":"3","hospital_id":"jcp@sante.dz","laboratory_id":"pascal@sante.dz"}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/test"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "disease_id": "Covid_19",
+    "patient_id": "3",
+    "hospital_id": "jcp@sante.dz",
+    "laboratory_id": "pascal@sante.dz"
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": {
+        "id": 1,
+        "disease_id": "Covid_19",
+        "patient_id": 3,
+        "hospital_id": "set@sante.dz",
+        "laboratory_id": "pascal@sante.dz",
+        "positif": 1
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (500):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": {
+        "id": [
+            "The disease_id is required."
+        ]
+    }
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/test</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>disease_id</code></td>
+<td>string</td>
+<td>required</td>
+<td>disease_id .</td>
+</tr>
+<tr>
+<td><code>patient_id</code></td>
+<td>string</td>
+<td>required</td>
+<td>patient_id.</td>
+</tr>
+<tr>
+<td><code>hospital_id</code></td>
+<td>string</td>
+<td>required</td>
+<td>hospital_id.</td>
+</tr>
+<tr>
+<td><code>laboratory_id</code></td>
+<td>string</td>
+<td>required</td>
+<td>laboratory_id.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_50c0a334d57bffdf48ce568bad023ce0 -->
+<!-- START_0e7fdfc917574c772941bb990e1e6826 -->
+<h2>Display the specified resource.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/api/test/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/test/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": {
+        "id": 1,
+        "disease_id": "Covid_19",
+        "patient_id": 3,
+        "hospital_id": "set@sante.dz",
+        "laboratory_id": "pascal@sante.dz",
+        "positif": 1
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": "test not found"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/test/{test}</code></p>
+<!-- END_0e7fdfc917574c772941bb990e1e6826 -->
+<!-- START_b446b9637348bf83b7e1446be6867356 -->
+<h2>Test result</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://localhost/api/test/response" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"id":3,"positif":false}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/test/response"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "id": 3,
+    "positif": false
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": {
+        "id": 1,
+        "disease_id": "Covid_19",
+        "patient_id": 3,
+        "hospital_id": "set@sante.dz",
+        "laboratory_id": "pascal@sante.dz",
+        "positif": 1
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": "test not found"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/test/response</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>required</td>
+<td>test_id .</td>
+</tr>
+<tr>
+<td><code>positif</code></td>
+<td>boolean</td>
+<td>required</td>
+<td>test result.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_b446b9637348bf83b7e1446be6867356 -->
+<!-- START_65e2f1ddb83c19139e47b7de5da9dfd7 -->
+<h2>Get all tests for a given laboratory</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/api/test/laboratory/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/test/laboratory/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">[]</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/test/laboratory/{id}</code></p>
+<!-- END_65e2f1ddb83c19139e47b7de5da9dfd7 -->
+<!-- START_bb12dcb912eda8134ee3eebd68022beb -->
+<h2>Get all tests for a given hospital</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/api/test/hospital/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/test/hospital/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">[]</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/test/hospital/{id}</code></p>
+<!-- END_bb12dcb912eda8134ee3eebd68022beb -->
+<!-- START_75b67f5c13a24a7aebb466cd3830e2a6 -->
+<h2>Get all tests for a given patient</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/api/test/patient/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/test/patient/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">[
+    {
+        "id": 2,
+        "disease_id": "Covid_19",
+        "patient_id": 1,
+        "hospital_id": "set@sante.dz",
+        "laboratory_id": "pascal@sante.dz",
+        "created_at": "2020-06-13T11:43:01.000000Z",
+        "updated_at": "2020-06-13T11:43:01.000000Z",
+        "positif": null
+    }
+]</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/test/patient/{id}</code></p>
+<!-- END_75b67f5c13a24a7aebb466cd3830e2a6 -->
+<!-- START_97f65c66d837f41e3d23414f6b57579e -->
+<h2>Get all tests for a given disease</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/api/test/disease/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/test/disease/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">[]</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/test/disease/{id}</code></p>
+<!-- END_97f65c66d837f41e3d23414f6b57579e -->
+<h1>Wilayas management</h1>
+<p>APIs for managing Wilayas</p>
+<!-- START_292d984bd4d4850c027b2e1a337d3a69 -->
+<h2>Display a listing of the Wilayas.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/api/wilayas" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/wilayas"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": [
+        {
+            "id": 16,
+            "name": "alger"
+        },
+        {
+            "id": 19,
+            "name": "setif"
+        }
+    ]
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/wilayas</code></p>
+<!-- END_292d984bd4d4850c027b2e1a337d3a69 -->
+<!-- START_26ab8af0702d9e43fffe3ca25cf001e8 -->
+<h2>Store a newly created resource in storage.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://localhost/api/wilayas" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"id":19,"wilaya_name":"setif"}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/wilayas"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "id": 19,
+    "wilaya_name": "setif"
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": {
+        "id": 19,
+        "name": "setif"
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (500):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": {
+        "id": [
+            "The id has already been taken."
+        ],
+        "wilaya_name": [
+            "The wilaya name has already been taken."
+        ]
+    }
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/wilayas</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>required</td>
+<td>wilaya id .</td>
+</tr>
+<tr>
+<td><code>wilaya_name</code></td>
+<td>string</td>
+<td>required</td>
+<td>wilaya_name.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_26ab8af0702d9e43fffe3ca25cf001e8 -->
+<!-- START_84e504e29bad60beca012e305da3ffcc -->
+<h2>Display the specified wilaya.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/api/wilayas/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/wilayas/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": {
+        "id": 19,
+        "name": "setif"
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": "wilaya not found"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/wilayas/{wilaya}</code></p>
+<!-- END_84e504e29bad60beca012e305da3ffcc -->
+<!-- START_81de45d36808d042f69b7a2710c972c7 -->
+<h2>Remove the specified wilaya from storage.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE \
+    "http://localhost/api/wilayas/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/wilayas/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "success",
+    "message": "wilaya deleted"
+}</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": "wilaya not found"
+}</code></pre>
+<blockquote>
+<p>Example response (500):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": "Database server error"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>DELETE api/wilayas/{wilaya}</code></p>
+<!-- END_81de45d36808d042f69b7a2710c972c7 -->
+<h1>general</h1>
+<!-- START_2f674d16f20a26fc449e6ad3200dc907 -->
+<h2>Display a listing of the DeseasesHospital.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/api/deseases_hospital" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/deseases_hospital"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": [
+        {
+            "disease_id": "Covid_19",
+            "patient_id": 1,
+            "hospital_id": "set@sante.dz",
+            "laboratory_id": null,
+            "cured": 1
+        },
+        {
+            "disease_id": "Covid_19",
+            "patient_id": 3,
+            "hospital_id": "set@sante.dz",
+            "laboratory_id": null,
+            "cured": 0
+        }
+    ]
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/deseases_hospital</code></p>
+<!-- END_2f674d16f20a26fc449e6ad3200dc907 -->
+<!-- START_f4dc7ea998aa34c88ceb2933dea86a20 -->
+<h2>Store a newly created DeseasesHospital in storage.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://localhost/api/deseases_hospital" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"disease_id":"Covid_19","patient_id":"3","hospital_id":"jcp@sante.dz"}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/deseases_hospital"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "disease_id": "Covid_19",
+    "patient_id": "3",
+    "hospital_id": "jcp@sante.dz"
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": {
+        "id": 1,
+        "disease_id": "Covid_19",
+        "patient_id": 3,
+        "hospital_id": "set@sante.dz",
+        "cured": 1
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (500):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": {
+        "id": [
+            "The disease_id is required."
+        ]
+    }
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/deseases_hospital</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>disease_id</code></td>
+<td>string</td>
+<td>required</td>
+<td>disease_id .</td>
+</tr>
+<tr>
+<td><code>patient_id</code></td>
+<td>string</td>
+<td>required</td>
+<td>patient_id.</td>
+</tr>
+<tr>
+<td><code>hospital_id</code></td>
+<td>string</td>
+<td>required</td>
+<td>hospital_id.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_f4dc7ea998aa34c88ceb2933dea86a20 -->
+<!-- START_43bd394f71fb6ea01845852eb86d7607 -->
+<h2>If someone is cured hhh</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://localhost/api/deseases_hospital/cure" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"disease_id":"Covid_19","patient_id":3,"hospital_id":"bacha@sante.dz","cured":true}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/deseases_hospital/cure"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "disease_id": "Covid_19",
+    "patient_id": 3,
+    "hospital_id": "bacha@sante.dz",
+    "cured": true
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "success"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/deseases_hospital/cure</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>disease_id</code></td>
+<td>string</td>
+<td>required</td>
+<td>disease_id .</td>
+</tr>
+<tr>
+<td><code>patient_id</code></td>
+<td>integer</td>
+<td>required</td>
+<td>patient_id .</td>
+</tr>
+<tr>
+<td><code>hospital_id</code></td>
+<td>string</td>
+<td>required</td>
+<td>hospital_id .</td>
+</tr>
+<tr>
+<td><code>cured</code></td>
+<td>boolean</td>
+<td>required</td>
+<td>test cured.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_43bd394f71fb6ea01845852eb86d7607 -->
+<!-- START_7c36c79f8bbf25a1657ff2545379d351 -->
+<h2>true if the perdon is dead</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://localhost/api/deseases_hospital/dead" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"disease_id":"Covid_19","patient_id":3,"hospital_id":"bacha@sante.dz","dead":false}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/deseases_hospital/dead"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "disease_id": "Covid_19",
+    "patient_id": 3,
+    "hospital_id": "bacha@sante.dz",
+    "dead": false
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "success"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/deseases_hospital/dead</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>disease_id</code></td>
+<td>string</td>
+<td>required</td>
+<td>disease_id .</td>
+</tr>
+<tr>
+<td><code>patient_id</code></td>
+<td>integer</td>
+<td>required</td>
+<td>patient_id .</td>
+</tr>
+<tr>
+<td><code>hospital_id</code></td>
+<td>string</td>
+<td>required</td>
+<td>hospital_id .</td>
+</tr>
+<tr>
+<td><code>dead</code></td>
+<td>boolean</td>
+<td>required</td>
+<td>dead.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_7c36c79f8bbf25a1657ff2545379d351 -->
+<!-- START_19ed32d31be0628c44f251a3d2f1d950 -->
+<h2>Returns the statistics of a wilaya</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/api/stat/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/stat/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "cured": [],
+    "not_cured": []
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/stat/{wilaya}</code></p>
+<!-- END_19ed32d31be0628c44f251a3d2f1d950 -->
+<!-- START_c5a2ae4a8a8cbeb1fa7c1b2e52ded22a -->
+<h2>Returns the statistics of all the contry</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/api/stat" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/stat"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "cured": [
+        {
+            "wilaya_id": 19,
+            "disease_id": "Covid_19",
+            "patient_id": 1,
+            "id": "set@sante.dz",
+            "cured": 1
+        }
+    ],
+    "not_cured": [
+        {
+            "wilaya_id": 19,
+            "disease_id": "Covid_19",
+            "patient_id": 3,
+            "id": "set@sante.dz",
+            "cured": 0
+        }
+    ]
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/stat</code></p>
+<!-- END_c5a2ae4a8a8cbeb1fa7c1b2e52ded22a -->
+      </div>
+      <div class="dark-box">
+                        <div class="lang-selector">
+                                    <a href="#" data-language-name="bash">bash</a>
+                                    <a href="#" data-language-name="javascript">javascript</a>
+                              </div>
+                </div>
+    </div>
+  </body>
+</html>
