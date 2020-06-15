@@ -21,6 +21,8 @@ class HospitalResource extends JsonResource
             'name' => $this->name,
             'description' => $this->description,
             'places' => $this->places,
+            'lat' => $this->lat,
+            'lng' => $this->lng,
             'wilaya_id' => $this->wilaya_id,
         ];
     }

@@ -635,6 +635,8 @@ fetch(url, {
             "name": "mustapha pacha",
             "description": null,
             "places": 151,
+            "lat": 36.762199,
+            "lng": 3.053796,
             "wilaya_id": 16
         },
         {
@@ -642,6 +644,8 @@ fetch(url, {
             "name": "saadna abdenour",
             "description": null,
             "places": 150,
+            "lat": 36.191404,
+            "lng": 5.403133,
             "wilaya_id": 19
         }
     ]
@@ -664,7 +668,7 @@ curl -X POST \
     "http://localhost/api/hospitals" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"id":"hospital@sante.dz","name":"hospital","wilaya_id":16,"password":"98776","description":".......................","address":"Alger","places":150}'
+    -d '{"id":"hospital@sante.dz","name":"hospital","wilaya_id":16,"password":"98776","description":".......................","address":"Alger","places":"151.171936"}'
 
 ```
 
@@ -685,7 +689,7 @@ let body = {
     "password": "98776",
     "description": ".......................",
     "address": "Alger",
-    "places": 150
+    "places": "151.171936"
 }
 
 fetch(url, {
@@ -703,10 +707,13 @@ fetch(url, {
 ```json
 {
     "data": {
-        "id": "bacha@sante.dz",
-        "name": "bacha",
+        "id": "pacha@sante.dz",
+        "name": "mustapha pacha",
         "description": null,
-        "wilaya_id": 19
+        "places": 151,
+        "lat": 36.762199,
+        "lng": 3.053796,
+        "wilaya_id": 16
     }
 }
 ```
@@ -735,7 +742,7 @@ Parameter | Type | Status | Description
         `password` | string |  required  | The password.
         `description` | string |  optional  | a description of the Hospital.
         `address` | date |  optional  | address of the Hospital.
-        `places` | integer |  optional  | number of free places.
+        `places` | lng |  optional  | longitudes.
     
 <!-- END_0d4a62419cf95816fda538d56aad78f1 -->
 
@@ -775,10 +782,13 @@ fetch(url, {
 ```json
 {
     "data": {
-        "id": "bacha@sante.dz",
-        "name": "bacha",
+        "id": "pacha@sante.dz",
+        "name": "mustapha pacha",
         "description": null,
-        "wilaya_id": 19
+        "places": 151,
+        "lat": 36.762199,
+        "lng": 3.053796,
+        "wilaya_id": 16
     }
 }
 ```
@@ -895,10 +905,13 @@ fetch(url, {
 ```json
 {
     "data": {
-        "id": "bacha@sante.dz",
-        "name": "bacha",
+        "id": "pacha@sante.dz",
+        "name": "mustapha pacha",
         "description": null,
-        "wilaya_id": 19
+        "places": 151,
+        "lat": 36.762199,
+        "lng": 3.053796,
+        "wilaya_id": 16
     }
 }
 ```
@@ -925,23 +938,23 @@ fetch(url, {
 
 <!-- END_7a15ca89be58b1de5830dfe99b21ad74 -->
 
-<!-- START_bbace016a745d0af91b9538ce6278069 -->
+<!-- START_212e52ca8944cc0bdf79421810e8ed1f -->
 ## Get the best hospital.
 
 > Example request:
 
 ```bash
-curl -X GET \
-    -G "http://localhost/api/hospitals/wilaya/1" \
+curl -X POST \
+    "http://localhost/api/hospitals/besthospital" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"id":19}'
+    -d '{"wilaya":19,"lat":-33.861034,"lng":151.171936}'
 
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/hospitals/wilaya/1"
+    "http://localhost/api/hospitals/besthospital"
 );
 
 let headers = {
@@ -950,11 +963,13 @@ let headers = {
 };
 
 let body = {
-    "id": 19
+    "wilaya": 19,
+    "lat": -33.861034,
+    "lng": 151.171936
 }
 
 fetch(url, {
-    method: "GET",
+    method: "POST",
     headers: headers,
     body: body
 })
@@ -971,7 +986,9 @@ fetch(url, {
         "id": "pacha@sante.dz",
         "name": "mustapha pacha",
         "description": null,
-        "places": 150,
+        "places": 151,
+        "lat": 36.762199,
+        "lng": 3.053796,
         "wilaya_id": 16
     }
 }
@@ -981,19 +998,21 @@ fetch(url, {
 ```json
 {
     "status": "error",
-    "message": "no hospital found"
+    "message": "no hospital found,full"
 }
 ```
 
 ### HTTP Request
-`GET api/hospitals/wilaya/{id}`
+`POST api/hospitals/besthospital`
 
 #### Body Parameters
 Parameter | Type | Status | Description
 --------- | ------- | ------- | ------- | -----------
-    `id` | integer |  optional  | wilaya_id.
+    `wilaya` | integer |  optional  | wilaya id.
+        `lat` | float |  optional  | latitudes.
+        `lng` | float |  optional  | longitudes.
     
-<!-- END_bbace016a745d0af91b9538ce6278069 -->
+<!-- END_212e52ca8944cc0bdf79421810e8ed1f -->
 
 <!-- START_60da935406b83c51ec60bde40f1ec704 -->
 ## Get a place on the specified hospital.
@@ -1139,6 +1158,82 @@ Parameter | Type | Status | Description
     
 <!-- END_1fc1f4d19c74054717bad0f48213fbf0 -->
 
+<!-- START_c54923d404b504b97f2341feeadde8ca -->
+## Set coordinates the specified hospital.
+
+> Example request:
+
+```bash
+curl -X PUT \
+    "http://localhost/api/hospitals/coordinates" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"id":0,"lat":-33.861034,"lng":151.171936}'
+
+```
+
+```javascript
+const url = new URL(
+    "http://localhost/api/hospitals/coordinates"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "id": 0,
+    "lat": -33.861034,
+    "lng": 151.171936
+}
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "status": "success"
+}
+```
+> Example response (404):
+
+```json
+{
+    "status": "error",
+    "message": "no hospital found"
+}
+```
+> Example response (501):
+
+```json
+{
+    "status": "error",
+    "message": "no modification"
+}
+```
+
+### HTTP Request
+`PUT api/hospitals/coordinates`
+
+#### Body Parameters
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    `id` | integer |  optional  | hospital_id.
+        `lat` | float |  optional  | latitudes.
+        `lng` | float |  optional  | longitudes.
+    
+<!-- END_c54923d404b504b97f2341feeadde8ca -->
+
 #Laboratories management
 
 
@@ -1205,7 +1300,7 @@ curl -X POST \
     "http://localhost/api/laboratories" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"id":"labo@sante.dz","name":"labo","wilaya_id":16,"password":"98776","description":".......................","address":"illo"}'
+    -d '{"id":"labo@sante.dz","name":"labo","wilaya_id":16,"password":"98776","description":".......................","address":"quo"}'
 
 ```
 
@@ -1225,7 +1320,7 @@ let body = {
     "wilaya_id": 16,
     "password": "98776",
     "description": ".......................",
-    "address": "illo"
+    "address": "quo"
 }
 
 fetch(url, {

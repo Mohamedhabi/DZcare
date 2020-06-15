@@ -37,9 +37,10 @@ Route::get('stat', 'DeseasesHospitalController@stat');
 Route::post('login/administration', 'AdministrationController@login');
 Route::post('login/hospital', 'HospitalController@login');
 Route::post('login/laboratory', 'LaboratoryController@login');
-Route::get('hospitals/wilaya/{id}', 'HospitalController@get_best_hospital');
+Route::post('hospitals/besthospital', 'HospitalController@get_best_hospital');
 Route::put('hospitals/allocate','HospitalController@take_aplace');
 Route::put('hospitals/free','HospitalController@free_aplace');
+Route::put('hospitals/coordinates','HospitalController@set_coordinates');
 
 
 

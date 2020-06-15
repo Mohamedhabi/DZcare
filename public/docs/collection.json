@@ -2,7 +2,7 @@
     "variables": [],
     "info": {
         "name": "Laravel API",
-        "_postman_id": "a7fbdc85-7a93-4637-8e86-b0e2846cf555",
+        "_postman_id": "27096a81-9e44-4687-9ef2-8e4f2ef79f78",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.0.0\/collection.json"
     },
@@ -325,7 +325,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"id\": \"hospital@sante.dz\",\n    \"name\": \"hospital\",\n    \"wilaya_id\": 16,\n    \"password\": \"98776\",\n    \"description\": \".......................\",\n    \"address\": \"Alger\",\n    \"places\": 150\n}"
+                            "raw": "{\n    \"id\": \"hospital@sante.dz\",\n    \"name\": \"hospital\",\n    \"wilaya_id\": 16,\n    \"password\": \"98776\",\n    \"description\": \".......................\",\n    \"address\": \"Alger\",\n    \"places\": \"151.171936\"\n}"
                         },
                         "description": "",
                         "response": []
@@ -421,10 +421,10 @@
                         "url": {
                             "protocol": "http",
                             "host": "localhost",
-                            "path": "api\/hospitals\/wilaya\/:id",
+                            "path": "api\/hospitals\/besthospital",
                             "query": []
                         },
-                        "method": "GET",
+                        "method": "POST",
                         "header": [
                             {
                                 "key": "Content-Type",
@@ -437,7 +437,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"id\": 19\n}"
+                            "raw": "{\n    \"wilaya\": 19,\n    \"lat\": -33.861034,\n    \"lng\": 151.171936\n}"
                         },
                         "description": "",
                         "response": []
@@ -494,6 +494,34 @@
                         "body": {
                             "mode": "raw",
                             "raw": "{\n    \"id\": 0\n}"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Set coordinates the specified hospital.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost",
+                            "path": "api\/hospitals\/coordinates",
+                            "query": []
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": 0,\n    \"lat\": -33.861034,\n    \"lng\": 151.171936\n}"
                         },
                         "description": "",
                         "response": []
@@ -555,7 +583,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"id\": \"labo@sante.dz\",\n    \"name\": \"labo\",\n    \"wilaya_id\": 16,\n    \"password\": \"98776\",\n    \"description\": \".......................\",\n    \"address\": \"illo\"\n}"
+                            "raw": "{\n    \"id\": \"labo@sante.dz\",\n    \"name\": \"labo\",\n    \"wilaya_id\": 16,\n    \"password\": \"98776\",\n    \"description\": \".......................\",\n    \"address\": \"quo\"\n}"
                         },
                         "description": "",
                         "response": []

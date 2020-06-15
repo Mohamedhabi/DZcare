@@ -592,6 +592,8 @@ fetch(url, {
             "name": "mustapha pacha",
             "description": null,
             "places": 151,
+            "lat": 36.762199,
+            "lng": 3.053796,
             "wilaya_id": 16
         },
         {
@@ -599,6 +601,8 @@ fetch(url, {
             "name": "saadna abdenour",
             "description": null,
             "places": 150,
+            "lat": 36.191404,
+            "lng": 5.403133,
             "wilaya_id": 19
         }
     ]
@@ -615,7 +619,7 @@ fetch(url, {
     "http://localhost/api/hospitals" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"id":"hospital@sante.dz","name":"hospital","wilaya_id":16,"password":"98776","description":".......................","address":"Alger","places":150}'
+    -d '{"id":"hospital@sante.dz","name":"hospital","wilaya_id":16,"password":"98776","description":".......................","address":"Alger","places":"151.171936"}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/hospitals"
@@ -633,7 +637,7 @@ let body = {
     "password": "98776",
     "description": ".......................",
     "address": "Alger",
-    "places": 150
+    "places": "151.171936"
 }
 
 fetch(url, {
@@ -648,10 +652,13 @@ fetch(url, {
 </blockquote>
 <pre><code class="language-json">{
     "data": {
-        "id": "bacha@sante.dz",
-        "name": "bacha",
+        "id": "pacha@sante.dz",
+        "name": "mustapha pacha",
         "description": null,
-        "wilaya_id": 19
+        "places": 151,
+        "lat": 36.762199,
+        "lng": 3.053796,
+        "wilaya_id": 16
     }
 }</code></pre>
 <blockquote>
@@ -716,9 +723,9 @@ fetch(url, {
 </tr>
 <tr>
 <td><code>places</code></td>
-<td>integer</td>
+<td>lng</td>
 <td>optional</td>
-<td>number of free places.</td>
+<td>longitudes.</td>
 </tr>
 </tbody>
 </table>
@@ -752,10 +759,13 @@ fetch(url, {
 </blockquote>
 <pre><code class="language-json">{
     "data": {
-        "id": "bacha@sante.dz",
-        "name": "bacha",
+        "id": "pacha@sante.dz",
+        "name": "mustapha pacha",
         "description": null,
-        "wilaya_id": 19
+        "places": 151,
+        "lat": 36.762199,
+        "lng": 3.053796,
+        "wilaya_id": 16
     }
 }</code></pre>
 <blockquote>
@@ -845,10 +855,13 @@ fetch(url, {
 </blockquote>
 <pre><code class="language-json">{
     "data": {
-        "id": "bacha@sante.dz",
-        "name": "bacha",
+        "id": "pacha@sante.dz",
+        "name": "mustapha pacha",
         "description": null,
-        "wilaya_id": 19
+        "places": 151,
+        "lat": 36.762199,
+        "lng": 3.053796,
+        "wilaya_id": 16
     }
 }</code></pre>
 <blockquote>
@@ -868,19 +881,19 @@ fetch(url, {
 <h3>HTTP Request</h3>
 <p><code>POST api/login/hospital</code></p>
 <!-- END_7a15ca89be58b1de5830dfe99b21ad74 -->
-<!-- START_bbace016a745d0af91b9538ce6278069 -->
+<!-- START_212e52ca8944cc0bdf79421810e8ed1f -->
 <h2>Get the best hospital.</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre><code class="language-bash">curl -X GET \
-    -G "http://localhost/api/hospitals/wilaya/1" \
+<pre><code class="language-bash">curl -X POST \
+    "http://localhost/api/hospitals/besthospital" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"id":19}'
+    -d '{"wilaya":19,"lat":-33.861034,"lng":151.171936}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/hospitals/wilaya/1"
+    "http://localhost/api/hospitals/besthospital"
 );
 
 let headers = {
@@ -889,11 +902,13 @@ let headers = {
 };
 
 let body = {
-    "id": 19
+    "wilaya": 19,
+    "lat": -33.861034,
+    "lng": 151.171936
 }
 
 fetch(url, {
-    method: "GET",
+    method: "POST",
     headers: headers,
     body: body
 })
@@ -907,7 +922,9 @@ fetch(url, {
         "id": "pacha@sante.dz",
         "name": "mustapha pacha",
         "description": null,
-        "places": 150,
+        "places": 151,
+        "lat": 36.762199,
+        "lng": 3.053796,
         "wilaya_id": 16
     }
 }</code></pre>
@@ -916,10 +933,10 @@ fetch(url, {
 </blockquote>
 <pre><code class="language-json">{
     "status": "error",
-    "message": "no hospital found"
+    "message": "no hospital found,full"
 }</code></pre>
 <h3>HTTP Request</h3>
-<p><code>GET api/hospitals/wilaya/{id}</code></p>
+<p><code>POST api/hospitals/besthospital</code></p>
 <h4>Body Parameters</h4>
 <table>
 <thead>
@@ -932,14 +949,26 @@ fetch(url, {
 </thead>
 <tbody>
 <tr>
-<td><code>id</code></td>
+<td><code>wilaya</code></td>
 <td>integer</td>
 <td>optional</td>
-<td>wilaya_id.</td>
+<td>wilaya id.</td>
+</tr>
+<tr>
+<td><code>lat</code></td>
+<td>float</td>
+<td>optional</td>
+<td>latitudes.</td>
+</tr>
+<tr>
+<td><code>lng</code></td>
+<td>float</td>
+<td>optional</td>
+<td>longitudes.</td>
 </tr>
 </tbody>
 </table>
-<!-- END_bbace016a745d0af91b9538ce6278069 -->
+<!-- END_212e52ca8944cc0bdf79421810e8ed1f -->
 <!-- START_60da935406b83c51ec60bde40f1ec704 -->
 <h2>Get a place on the specified hospital.</h2>
 <blockquote>
@@ -1086,6 +1115,93 @@ fetch(url, {
 </tbody>
 </table>
 <!-- END_1fc1f4d19c74054717bad0f48213fbf0 -->
+<!-- START_c54923d404b504b97f2341feeadde8ca -->
+<h2>Set coordinates the specified hospital.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X PUT \
+    "http://localhost/api/hospitals/coordinates" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"id":0,"lat":-33.861034,"lng":151.171936}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/hospitals/coordinates"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "id": 0,
+    "lat": -33.861034,
+    "lng": 151.171936
+}
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "success"
+}</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": "no hospital found"
+}</code></pre>
+<blockquote>
+<p>Example response (501):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": "no modification"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>PUT api/hospitals/coordinates</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>optional</td>
+<td>hospital_id.</td>
+</tr>
+<tr>
+<td><code>lat</code></td>
+<td>float</td>
+<td>optional</td>
+<td>latitudes.</td>
+</tr>
+<tr>
+<td><code>lng</code></td>
+<td>float</td>
+<td>optional</td>
+<td>longitudes.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_c54923d404b504b97f2341feeadde8ca -->
 <h1>Laboratories management</h1>
 <p>APIs for managing Laboratories</p>
 <!-- START_2a9df5c4e862c34e01aeb44a5d5b5212 -->
@@ -1137,7 +1253,7 @@ fetch(url, {
     "http://localhost/api/laboratories" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"id":"labo@sante.dz","name":"labo","wilaya_id":16,"password":"98776","description":".......................","address":"illo"}'
+    -d '{"id":"labo@sante.dz","name":"labo","wilaya_id":16,"password":"98776","description":".......................","address":"quo"}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/laboratories"
@@ -1154,7 +1270,7 @@ let body = {
     "wilaya_id": 16,
     "password": "98776",
     "description": ".......................",
-    "address": "illo"
+    "address": "quo"
 }
 
 fetch(url, {

@@ -19,13 +19,17 @@ class HospitalController extends Controller
 
     /**
      * Login hospital.
-     * @response {"data": {
-     *   "id": "bacha@sante.dz",
-     *   "name": "bacha",
-     *   "description": null,
-     *   "wilaya_id": 19
-     *  }
-     *}
+      * @response {
+     *  "data": {
+     *  "id": "pacha@sante.dz",
+     *  "name": "mustapha pacha",
+     *  "description": null,
+     *  "places": 151,
+     *  "lat": 36.762199,
+     *  "lng": 3.053796,
+     *  "wilaya_id": 16
+     *   }
+     * }
      *@response 404 {
      *  "status": "error",
      *  "message": "hospital not found"
@@ -62,13 +66,17 @@ class HospitalController extends Controller
 
     /**
     * Store a newly created Hospital in storage.
-     * @response {"data": {
-     *   "id": "bacha@sante.dz",
-     *   "name": "bacha",
-     *   "description": null,
-     *   "wilaya_id": 19
-     *  }
-     *}
+      * @response {
+     *  "data": {
+     *  "id": "pacha@sante.dz",
+     *  "name": "mustapha pacha",
+     *  "description": null,
+     *  "places": 151,
+     *  "lat": 36.762199,
+     *  "lng": 3.053796,
+     *  "wilaya_id": 16
+     *   }
+     * }
      *@response 500 {
      * "status": "error",
      * "message": {
@@ -84,6 +92,8 @@ class HospitalController extends Controller
      * @bodyParam description string  a description of the Hospital. Example: .......................
      * @bodyParam address date address of the Hospital. Example: Alger
      * @bodyParam places int number of free places. Example: 150
+     * @bodyParam places lat latitudes. Example: -33.861034
+     * @bodyParam places lng longitudes. Example: 151.171936
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -113,6 +123,8 @@ class HospitalController extends Controller
         $hospital->description= $request->description;
         $hospital->wilaya_id= $request->wilaya_id;
         $hospital->places= $request->places;
+        $hospital->lat= $request->lat;
+        $hospital->lng= $request->lng;
 
         $hospital->save();
 
@@ -121,13 +133,17 @@ class HospitalController extends Controller
 
     /**
      * Display the specified resource.
-     * @response {"data": {
-     *   "id": "bacha@sante.dz",
-     *   "name": "bacha",
-     *   "description": null,
-     *   "wilaya_id": 19
-     *  }
-     *}
+      * @response {
+     *  "data": {
+     *  "id": "pacha@sante.dz",
+     *  "name": "mustapha pacha",
+     *  "description": null,
+     *  "places": 151,
+     *  "lat": 36.762199,
+     *  "lng": 3.053796,
+     *  "wilaya_id": 16
+     *   }
+     * }
      *@response 404 {
      *  "status": "error",
      *  "message": "hospital not found"
@@ -174,39 +190,6 @@ class HospitalController extends Controller
         }
     }
 
-    /**
-     * Get the best hospital.
-     * @bodyParam id int wilaya_id. Example: 19
-     * @response {
-     *  "data": {
-     *  "id": "pacha@sante.dz",
-     *  "name": "mustapha pacha",
-     *  "description": null,
-     *  "places": 150,
-     *  "wilaya_id": 16
-     *   }
-     * }
-     *@response 404 {
-     *  "status": "error",
-     *  "message": "no hospital found"
-     * }
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function get_best_hospital($id)
-    {
-        $hos= Hospital::where('wilaya_id',$id)->where('places',Hospital::where('wilaya_id',$id)->max('places'))->get();
-
-        if($hos->count()==0){
-            $hos=Hospital::first();
-            if($hos!=null){
-                return new HospitalResource($hos->first());
-            }
-        }else{
-            return new HospitalResource($hos->first());
-        }
-        return response()->json(['status' => 'error','message' => 'no hospital found'],404);
-    }
 
     /**
      * Get a place on the specified hospital.
@@ -222,7 +205,7 @@ class HospitalController extends Controller
      *  "status": "error",
      *  "message": "no modification"
      * }
-     * @param  string  $id
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function take_aplace(Request $request)
@@ -258,7 +241,7 @@ class HospitalController extends Controller
      *  "status": "error",
      *  "message": "no modification"
      * }
-     * @param  string  $id
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function free_aplace(Request $request)
@@ -278,5 +261,118 @@ class HospitalController extends Controller
                 return response()->json(['status' => 'error','message'=>'no modification'],501);
             }
         }
+    }
+
+    /**
+     * Set coordinates the specified hospital.
+     * @bodyParam id int hospital_id. Example: pacha@sante.dz
+     * @bodyParam lat float latitudes. Example: -33.861034
+     * @bodyParam lng float longitudes. Example: 151.171936
+     *
+     * @response {
+     *   "status":"success"
+     *}
+     *@response 404 {
+     *  "status": "error",
+     *  "message": "no hospital found"
+     * }
+     *@response 501 {
+     *  "status": "error",
+     *  "message": "no modification"
+     * }
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function set_coordinates(Request $request)
+    {
+        $id=$request->id;
+        $hospital= Hospital::find($id);
+
+        if(empty($hospital)){
+            return response()->json(['status' => 'error','message' => 'hospital not found'],404);
+        }else{
+            $a=DB::table('hospitals')
+                ->where('id',$id)
+                ->update(array('lat' => $request->lat,'lng'=>$request->lng));
+            if($a==1){
+                return response()->json(['status' => 'success'],200);
+            }else{
+                return response()->json(['status' => 'error','message'=>'no modification'],501);
+            }
+        }
+    }
+
+    /**
+     * Get the best hospital.
+     * @bodyParam wilaya int wilaya id. Example: 19
+     * @bodyParam lat float latitudes. Example: -33.861034
+     * @bodyParam lng float longitudes. Example: 151.171936
+     *
+     * @response {
+     *  "data": {
+     *  "id": "pacha@sante.dz",
+     *  "name": "mustapha pacha",
+     *  "description": null,
+     *  "places": 151,
+     *  "lat": 36.762199,
+     *  "lng": 3.053796,
+     *  "wilaya_id": 16
+     *   }
+     * }
+     *@response 404 {
+     *  "status": "error",
+     *  "message": "no hospital found,full"
+     * }
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function get_best_hospital(Request $request)
+    {
+        $hospitals=Hospital::where('places','>',3)->get();
+        if(empty($hospitals)){
+            return response()->json(['status' => 'error','message' => 'no hospital found,full'],404);
+        }else{
+            if($request->lat!=null && $request->lng!=null){
+                $best_hospital= $this->get_close($hospitals,$request->lat,$request->lng);
+                return new HospitalResource($best_hospital);
+            }else{
+                $hos= Hospital::where('wilaya_id',$request->wilaya)->where('places',Hospital::where('wilaya_id',$request->wilaya)->max('places'))->get();
+                if($hos->count()==0){
+                    return new HospitalResource($hospitals->first());
+                }else{
+                    return new HospitalResource($hos->first());
+                }
+            }
+        }
+    }
+
+    protected function get_close($hospitals, $lat, $lng) {
+        $best_dist=$this->distance($hospitals->first()->lat,$hospitals->first()->lng, $lat, $lng);
+        $best_hospital=$hospitals->first();
+        foreach($hospitals as $hospital){
+            if($hospital->lat!=null && $hospital->lng!=null){
+                $dist=$this->distance($hospital->lat,$hospital->lng, $lat, $lng);
+                if($dist<$best_dist){
+                    $best_dist=$dist;
+                    $best_hospital=$hospital;
+                }
+            }
+        }
+        return $best_hospital;
+    }
+
+    protected function distance($lat1, $lon1, $lat2, $lon2) {
+        $pi80 = M_PI / 180;
+        $lat1 *= $pi80;
+        $lon1 *= $pi80;
+        $lat2 *= $pi80;
+        $lon2 *= $pi80;
+        $r = 6372.797; // mean radius of Earth in km
+        $dlat = $lat2 - $lat1;
+        $dlon = $lon2 - $lon1;
+        $a = sin($dlat / 2) * sin($dlat / 2) + cos($lat1) * cos($lat2) * sin($dlon / 2) * sin($dlon / 2);
+        $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
+        $km = $r * $c;
+        return $km;
     }
 }
