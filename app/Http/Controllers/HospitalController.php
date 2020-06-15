@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\HospitalResource;
 use App\Hospital;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 
@@ -82,6 +83,7 @@ class HospitalController extends Controller
      * @bodyParam password string required The password. Example: 98776
      * @bodyParam description string  a description of the Hospital. Example: .......................
      * @bodyParam address date address of the Hospital. Example: Alger
+     * @bodyParam places int number of free places. Example: 150
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -110,6 +112,7 @@ class HospitalController extends Controller
         $hospital->address= $request->address;
         $hospital->description= $request->description;
         $hospital->wilaya_id= $request->wilaya_id;
+        $hospital->places= $request->places;
 
         $hospital->save();
 
@@ -168,6 +171,112 @@ class HospitalController extends Controller
             return response()->json(['status' => 'success','message' => 'hospital deleted'],200);
         }else{
             return response()->json(['status' => 'error','message' => 'Database server error'],500);
+        }
+    }
+
+    /**
+     * Get the best hospital.
+     * @bodyParam id int wilaya_id. Example: 19
+     * @response {
+     *  "data": {
+     *  "id": "pacha@sante.dz",
+     *  "name": "mustapha pacha",
+     *  "description": null,
+     *  "places": 150,
+     *  "wilaya_id": 16
+     *   }
+     * }
+     *@response 404 {
+     *  "status": "error",
+     *  "message": "no hospital found"
+     * }
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function get_best_hospital($id)
+    {
+        $hos= Hospital::where('wilaya_id',$id)->where('places',Hospital::where('wilaya_id',$id)->max('places'))->get();
+
+        if($hos->count()==0){
+            $hos=Hospital::first();
+            if($hos!=null){
+                return new HospitalResource($hos->first());
+            }
+        }else{
+            return new HospitalResource($hos->first());
+        }
+        return response()->json(['status' => 'error','message' => 'no hospital found'],404);
+    }
+
+    /**
+     * Get a place on the specified hospital.
+     * @bodyParam id int hospital_id. Example: pacha@sante.dz
+     * @response {
+     *   "status":"success"
+     *}
+     *@response 404 {
+     *  "status": "error",
+     *  "message": "no hospital found"
+     * }
+     *@response 501 {
+     *  "status": "error",
+     *  "message": "no modification"
+     * }
+     * @param  string  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function take_aplace(Request $request)
+    {
+        $id=$request->id;
+        $hospital= Hospital::find($id);
+
+        if(empty($hospital)){
+            return response()->json(['status' => 'error','message' => 'hospital not found'],404);
+        }else{
+            $a=DB::table('hospitals')
+                ->where('id',$id)
+                ->update(array('places' => $hospital->places-1));
+            if($a==1){
+                return response()->json(['status' => 'success'],200);
+            }else{
+                return response()->json(['status' => 'error','message'=>'no modification'],501);
+            }
+        }
+    }
+
+     /**
+     * free a place on the specified hospital.
+     * @bodyParam id int hospital_id. Example: pacha@sante.dz
+     * @response {
+     *   "status":"success"
+     *}
+     *@response 404 {
+     *  "status": "error",
+     *  "message": "no hospital found"
+     * }
+     *@response 501 {
+     *  "status": "error",
+     *  "message": "no modification"
+     * }
+     * @param  string  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function free_aplace(Request $request)
+    {
+        $id=$request->id;
+        $hospital= Hospital::find($id);
+
+        if(empty($hospital)){
+            return response()->json(['status' => 'error','message' => 'hospital not found'],404);
+        }else{
+            $a=DB::table('hospitals')
+                ->where('id',$id)
+                ->update(array('places' => $hospital->places+1));
+            if($a==1){
+                return response()->json(['status' => 'success'],200);
+            }else{
+                return response()->json(['status' => 'error','message'=>'no modification'],501);
+            }
         }
     }
 }
