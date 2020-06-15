@@ -62,9 +62,9 @@ fetch(url, {
     "data": [
         {
             "id": "ministere@sante.dz",
-            "name": "ministere",
+            "name": "ministère de la santé de",
             "description": null,
-            "wilaya_id": 19
+            "wilaya_id": 16
         }
     ]
 }
@@ -387,7 +387,7 @@ fetch(url, {
     "data": [
         {
             "id": "Covid_19",
-            "description": null
+            "description": "La maladie à coronavirus 2019 , ou le ou la Covid-19 (acronyme anglais de coronavirus disease 2019), est une maladie infectieuse émergente de type zoonose virale causée par la souche de coronavirus SARS-CoV-2."
         }
     ]
 }
@@ -631,9 +631,17 @@ fetch(url, {
 {
     "data": [
         {
-            "id": "set@sante.dz",
-            "name": "saadna",
+            "id": "pacha@sante.dz",
+            "name": "mustapha pacha",
             "description": null,
+            "places": 151,
+            "wilaya_id": 16
+        },
+        {
+            "id": "saadna@sante.dz",
+            "name": "saadna abdenour",
+            "description": null,
+            "places": 150,
             "wilaya_id": 19
         }
     ]
@@ -656,7 +664,7 @@ curl -X POST \
     "http://localhost/api/hospitals" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"id":"hospital@sante.dz","name":"hospital","wilaya_id":16,"password":"98776","description":".......................","address":"Alger"}'
+    -d '{"id":"hospital@sante.dz","name":"hospital","wilaya_id":16,"password":"98776","description":".......................","address":"Alger","places":150}'
 
 ```
 
@@ -676,7 +684,8 @@ let body = {
     "wilaya_id": 16,
     "password": "98776",
     "description": ".......................",
-    "address": "Alger"
+    "address": "Alger",
+    "places": 150
 }
 
 fetch(url, {
@@ -726,6 +735,7 @@ Parameter | Type | Status | Description
         `password` | string |  required  | The password.
         `description` | string |  optional  | a description of the Hospital.
         `address` | date |  optional  | address of the Hospital.
+        `places` | integer |  optional  | number of free places.
     
 <!-- END_0d4a62419cf95816fda538d56aad78f1 -->
 
@@ -915,6 +925,220 @@ fetch(url, {
 
 <!-- END_7a15ca89be58b1de5830dfe99b21ad74 -->
 
+<!-- START_bbace016a745d0af91b9538ce6278069 -->
+## Get the best hospital.
+
+> Example request:
+
+```bash
+curl -X GET \
+    -G "http://localhost/api/hospitals/wilaya/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"id":19}'
+
+```
+
+```javascript
+const url = new URL(
+    "http://localhost/api/hospitals/wilaya/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "id": 19
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "data": {
+        "id": "pacha@sante.dz",
+        "name": "mustapha pacha",
+        "description": null,
+        "places": 150,
+        "wilaya_id": 16
+    }
+}
+```
+> Example response (404):
+
+```json
+{
+    "status": "error",
+    "message": "no hospital found"
+}
+```
+
+### HTTP Request
+`GET api/hospitals/wilaya/{id}`
+
+#### Body Parameters
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    `id` | integer |  optional  | wilaya_id.
+    
+<!-- END_bbace016a745d0af91b9538ce6278069 -->
+
+<!-- START_60da935406b83c51ec60bde40f1ec704 -->
+## Get a place on the specified hospital.
+
+> Example request:
+
+```bash
+curl -X PUT \
+    "http://localhost/api/hospitals/allocate" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"id":0}'
+
+```
+
+```javascript
+const url = new URL(
+    "http://localhost/api/hospitals/allocate"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "id": 0
+}
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "status": "success"
+}
+```
+> Example response (404):
+
+```json
+{
+    "status": "error",
+    "message": "no hospital found"
+}
+```
+> Example response (501):
+
+```json
+{
+    "status": "error",
+    "message": "no modification"
+}
+```
+
+### HTTP Request
+`PUT api/hospitals/allocate`
+
+#### Body Parameters
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    `id` | integer |  optional  | hospital_id.
+    
+<!-- END_60da935406b83c51ec60bde40f1ec704 -->
+
+<!-- START_1fc1f4d19c74054717bad0f48213fbf0 -->
+## free a place on the specified hospital.
+
+> Example request:
+
+```bash
+curl -X PUT \
+    "http://localhost/api/hospitals/free" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"id":0}'
+
+```
+
+```javascript
+const url = new URL(
+    "http://localhost/api/hospitals/free"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "id": 0
+}
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "status": "success"
+}
+```
+> Example response (404):
+
+```json
+{
+    "status": "error",
+    "message": "no hospital found"
+}
+```
+> Example response (501):
+
+```json
+{
+    "status": "error",
+    "message": "no modification"
+}
+```
+
+### HTTP Request
+`PUT api/hospitals/free`
+
+#### Body Parameters
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    `id` | integer |  optional  | hospital_id.
+    
+<!-- END_1fc1f4d19c74054717bad0f48213fbf0 -->
+
 #Laboratories management
 
 
@@ -956,16 +1180,10 @@ fetch(url, {
 {
     "data": [
         {
-            "id": "ok@sante.dz",
-            "name": "ministere",
+            "id": "pasteur@sante.dz",
+            "name": "pasteur",
             "description": null,
-            "wilaya_id": 19
-        },
-        {
-            "id": "pascal@sante.dz",
-            "name": "pascal",
-            "description": null,
-            "wilaya_id": 19
+            "wilaya_id": 16
         }
     ]
 }
@@ -987,7 +1205,7 @@ curl -X POST \
     "http://localhost/api/laboratories" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"id":"labo@sante.dz","name":"labo","wilaya_id":16,"password":"98776","description":".......................","address":"non"}'
+    -d '{"id":"labo@sante.dz","name":"labo","wilaya_id":16,"password":"98776","description":".......................","address":"illo"}'
 
 ```
 
@@ -1007,7 +1225,7 @@ let body = {
     "wilaya_id": 16,
     "password": "98776",
     "description": ".......................",
-    "address": "non"
+    "address": "illo"
 }
 
 fetch(url, {
@@ -1288,18 +1506,26 @@ fetch(url, {
     "data": [
         {
             "id": 1,
-            "first_name": "aziz",
-            "last_name": "boutef",
-            "phone": "07779261738",
+            "first_name": "abdelaziz",
+            "last_name": "bouteflika",
+            "phone": "0666666666",
+            "email": null,
+            "address": null
+        },
+        {
+            "id": 2,
+            "first_name": "donald",
+            "last_name": "trump",
+            "phone": null,
             "email": null,
             "address": null
         },
         {
             "id": 3,
-            "first_name": "ok",
-            "last_name": "boki",
-            "phone": null,
-            "email": "msl",
+            "first_name": "abdelmalek",
+            "last_name": "sellal",
+            "phone": "07777777777",
+            "email": null,
             "address": null
         }
     ]
@@ -1624,17 +1850,25 @@ fetch(url, {
         {
             "id": 1,
             "disease_id": "Covid_19",
-            "patient_id": 3,
-            "hospital_id": "set@sante.dz",
-            "laboratory_id": "pascal@sante.dz",
+            "patient_id": 1,
+            "hospital_id": "pacha@sante.dz",
+            "laboratory_id": "pasteur@sante.dz",
             "positif": 1
         },
         {
             "id": 2,
             "disease_id": "Covid_19",
-            "patient_id": 1,
-            "hospital_id": "set@sante.dz",
-            "laboratory_id": "pascal@sante.dz",
+            "patient_id": 2,
+            "hospital_id": "pacha@sante.dz",
+            "laboratory_id": "pasteur@sante.dz",
+            "positif": 1
+        },
+        {
+            "id": 3,
+            "disease_id": "Covid_19",
+            "patient_id": 3,
+            "hospital_id": "saadna@sante.dz",
+            "laboratory_id": "pasteur@sante.dz",
             "positif": null
         }
     ]
@@ -1983,14 +2217,14 @@ fetch(url, {
 ```json
 [
     {
-        "id": 2,
+        "id": 1,
         "disease_id": "Covid_19",
         "patient_id": 1,
-        "hospital_id": "set@sante.dz",
-        "laboratory_id": "pascal@sante.dz",
-        "created_at": "2020-06-13T11:43:01.000000Z",
-        "updated_at": "2020-06-13T11:43:01.000000Z",
-        "positif": null
+        "hospital_id": "pacha@sante.dz",
+        "laboratory_id": "pasteur@sante.dz",
+        "created_at": "2020-06-15T00:11:47.000000Z",
+        "updated_at": "2020-06-15T00:16:00.000000Z",
+        "positif": 1
     }
 ]
 ```
@@ -2085,12 +2319,196 @@ fetch(url, {
 {
     "data": [
         {
+            "id": 1,
+            "name": "Adrar"
+        },
+        {
+            "id": 2,
+            "name": "Chlef"
+        },
+        {
+            "id": 3,
+            "name": "Laghouat"
+        },
+        {
+            "id": 4,
+            "name": "Oum El Bouaghi"
+        },
+        {
+            "id": 5,
+            "name": "Batna"
+        },
+        {
+            "id": 6,
+            "name": "Béjaïa"
+        },
+        {
+            "id": 7,
+            "name": "Biskra"
+        },
+        {
+            "id": 8,
+            "name": "Béchar"
+        },
+        {
+            "id": 9,
+            "name": "Blida"
+        },
+        {
+            "id": 10,
+            "name": "Bouira"
+        },
+        {
+            "id": 11,
+            "name": "Tamanrasset"
+        },
+        {
+            "id": 12,
+            "name": "Tébessa"
+        },
+        {
+            "id": 13,
+            "name": "Tlemcen"
+        },
+        {
+            "id": 14,
+            "name": "Tiaret"
+        },
+        {
+            "id": 15,
+            "name": "Tizi Ouzou"
+        },
+        {
             "id": 16,
-            "name": "alger"
+            "name": "Alger"
+        },
+        {
+            "id": 17,
+            "name": "Djelfa"
+        },
+        {
+            "id": 18,
+            "name": "Jijel"
         },
         {
             "id": 19,
-            "name": "setif"
+            "name": "Sétif"
+        },
+        {
+            "id": 20,
+            "name": "Saïda"
+        },
+        {
+            "id": 21,
+            "name": "Skikda"
+        },
+        {
+            "id": 22,
+            "name": "Sidi Bel Abbès"
+        },
+        {
+            "id": 23,
+            "name": "Annaba"
+        },
+        {
+            "id": 24,
+            "name": "Guelma"
+        },
+        {
+            "id": 25,
+            "name": "Constantine"
+        },
+        {
+            "id": 26,
+            "name": "Médéa"
+        },
+        {
+            "id": 27,
+            "name": "Mostaganem"
+        },
+        {
+            "id": 28,
+            "name": "MSila"
+        },
+        {
+            "id": 29,
+            "name": "Mascara"
+        },
+        {
+            "id": 30,
+            "name": "Ouargla"
+        },
+        {
+            "id": 31,
+            "name": "Oran"
+        },
+        {
+            "id": 32,
+            "name": "El Bayadh"
+        },
+        {
+            "id": 33,
+            "name": "Illizi"
+        },
+        {
+            "id": 34,
+            "name": "Bordj Bou Arreridj"
+        },
+        {
+            "id": 35,
+            "name": "Boumerdès"
+        },
+        {
+            "id": 36,
+            "name": "El Tarf"
+        },
+        {
+            "id": 37,
+            "name": "Tindouf"
+        },
+        {
+            "id": 38,
+            "name": "Tissemsilt"
+        },
+        {
+            "id": 39,
+            "name": "El Oued"
+        },
+        {
+            "id": 40,
+            "name": "Khenchela"
+        },
+        {
+            "id": 41,
+            "name": "Souk Ahras"
+        },
+        {
+            "id": 42,
+            "name": "Tipaza"
+        },
+        {
+            "id": 43,
+            "name": "Mila"
+        },
+        {
+            "id": 44,
+            "name": "Aïn Defla"
+        },
+        {
+            "id": 45,
+            "name": "Naâma"
+        },
+        {
+            "id": 46,
+            "name": "Aïn Témouchent"
+        },
+        {
+            "id": 47,
+            "name": "Ghardaïa"
+        },
+        {
+            "id": 48,
+            "name": "Relizane"
         }
     ]
 }
@@ -2338,14 +2756,14 @@ fetch(url, {
         {
             "disease_id": "Covid_19",
             "patient_id": 1,
-            "hospital_id": "set@sante.dz",
+            "hospital_id": "pacha@sante.dz",
             "laboratory_id": null,
-            "cured": 1
+            "cured": 0
         },
         {
             "disease_id": "Covid_19",
-            "patient_id": 3,
-            "hospital_id": "set@sante.dz",
+            "patient_id": 2,
+            "hospital_id": "pacha@sante.dz",
             "laboratory_id": null,
             "cured": 0
         }
@@ -2642,21 +3060,20 @@ fetch(url, {
 
 ```json
 {
-    "cured": [
-        {
-            "wilaya_id": 19,
-            "disease_id": "Covid_19",
-            "patient_id": 1,
-            "id": "set@sante.dz",
-            "cured": 1
-        }
-    ],
+    "cured": [],
     "not_cured": [
         {
-            "wilaya_id": 19,
+            "wilaya_id": 16,
             "disease_id": "Covid_19",
-            "patient_id": 3,
-            "id": "set@sante.dz",
+            "patient_id": 1,
+            "id": "pacha@sante.dz",
+            "cured": 0
+        },
+        {
+            "wilaya_id": 16,
+            "disease_id": "Covid_19",
+            "patient_id": 2,
+            "id": "pacha@sante.dz",
             "cured": 0
         }
     ]

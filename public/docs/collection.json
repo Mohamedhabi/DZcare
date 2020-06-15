@@ -2,7 +2,7 @@
     "variables": [],
     "info": {
         "name": "Laravel API",
-        "_postman_id": "9693c742-5691-4e03-b284-8a96a41d5755",
+        "_postman_id": "a7fbdc85-7a93-4637-8e86-b0e2846cf555",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.0.0\/collection.json"
     },
@@ -325,7 +325,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"id\": \"hospital@sante.dz\",\n    \"name\": \"hospital\",\n    \"wilaya_id\": 16,\n    \"password\": \"98776\",\n    \"description\": \".......................\",\n    \"address\": \"Alger\"\n}"
+                            "raw": "{\n    \"id\": \"hospital@sante.dz\",\n    \"name\": \"hospital\",\n    \"wilaya_id\": 16,\n    \"password\": \"98776\",\n    \"description\": \".......................\",\n    \"address\": \"Alger\",\n    \"places\": 150\n}"
                         },
                         "description": "",
                         "response": []
@@ -414,6 +414,90 @@
                         "description": "",
                         "response": []
                     }
+                },
+                {
+                    "name": "Get the best hospital.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost",
+                            "path": "api\/hospitals\/wilaya\/:id",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": 19\n}"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Get a place on the specified hospital.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost",
+                            "path": "api\/hospitals\/allocate",
+                            "query": []
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": 0\n}"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "free a place on the specified hospital.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost",
+                            "path": "api\/hospitals\/free",
+                            "query": []
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": 0\n}"
+                        },
+                        "description": "",
+                        "response": []
+                    }
                 }
             ]
         },
@@ -471,7 +555,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"id\": \"labo@sante.dz\",\n    \"name\": \"labo\",\n    \"wilaya_id\": 16,\n    \"password\": \"98776\",\n    \"description\": \".......................\",\n    \"address\": \"non\"\n}"
+                            "raw": "{\n    \"id\": \"labo@sante.dz\",\n    \"name\": \"labo\",\n    \"wilaya_id\": 16,\n    \"password\": \"98776\",\n    \"description\": \".......................\",\n    \"address\": \"illo\"\n}"
                         },
                         "description": "",
                         "response": []
