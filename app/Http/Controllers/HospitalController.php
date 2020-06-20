@@ -92,8 +92,8 @@ class HospitalController extends Controller
      * @bodyParam description string  a description of the Hospital. Example: .......................
      * @bodyParam address date address of the Hospital. Example: Alger
      * @bodyParam places int number of free places. Example: 150
-     * @bodyParam places lat latitudes. Example: -33.861034
-     * @bodyParam places lng longitudes. Example: 151.171936
+     * @bodyParam lat float latitudes. Example: -33.861034
+     * @bodyParam lng float longitudes. Example: 151.171936
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response

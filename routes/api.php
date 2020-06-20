@@ -24,6 +24,7 @@ Route::resource('wilayas', 'WilayaController')->except('update','create','edit')
 Route::resource('diseases', 'DiseaseController')->except('update','create','edit');
 Route::resource('patients', 'PatientController')->except('create','edit');
 Route::resource('test', 'TestController')->except('update','destroy','create','edit');
+Route::resource('paramedics', 'ParamedicController')->except('update','create','edit');
 Route::resource('deseases_hospital', 'DeseasesHospitalController')->except('update','destroy','create','edit');
 Route::post('test/response', 'TestController@response');
 Route::get('test/laboratory/{id}', 'TestController@show_by_laboratory');
@@ -35,6 +36,7 @@ Route::post('deseases_hospital/dead', 'DeseasesHospitalController@dead');
 Route::get('stat/{wilaya}', 'DeseasesHospitalController@stat_wilaya');
 Route::get('stat', 'DeseasesHospitalController@stat');
 Route::post('login/administration', 'AdministrationController@login');
+Route::post('login/paramedic', 'ParamedicController@login');
 Route::post('login/hospital', 'HospitalController@login');
 Route::post('login/laboratory', 'LaboratoryController@login');
 Route::post('hospitals/besthospital', 'HospitalController@get_best_hospital');

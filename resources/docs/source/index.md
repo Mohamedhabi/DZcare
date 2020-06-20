@@ -631,10 +631,55 @@ fetch(url, {
 {
     "data": [
         {
+            "id": "boudgheneHopital@sante.dz",
+            "name": "hopital de boudghene Telemcen",
+            "description": "....",
+            "places": 150,
+            "lat": 34.873035,
+            "lng": 1.320939,
+            "wilaya_id": 13
+        },
+        {
+            "id": "CHUTiziOuzou@sante.dz",
+            "name": "CHU de Tizi Ouzou",
+            "description": "....",
+            "places": 150,
+            "lat": 36.726739,
+            "lng": 4.065606,
+            "wilaya_id": 15
+        },
+        {
+            "id": "DjeghriMokhtarErriad@sante.dz",
+            "name": "Djeghri Mokhtar Erriad",
+            "description": "....",
+            "places": 150,
+            "lat": 36.359726,
+            "lng": 6.652577,
+            "wilaya_id": 25
+        },
+        {
+            "id": "frantzfanon@sante.dz",
+            "name": "Frantz Fanon",
+            "description": "....",
+            "places": 150,
+            "lat": 36.756377,
+            "lng": 5.083535,
+            "wilaya_id": 6
+        },
+        {
+            "id": "OranHopital@sante.dz",
+            "name": "hopital Oran",
+            "description": "....",
+            "places": 150,
+            "lat": 35.694071,
+            "lng": -0.642306,
+            "wilaya_id": 31
+        },
+        {
             "id": "pacha@sante.dz",
             "name": "mustapha pacha",
             "description": null,
-            "places": 151,
+            "places": 129,
             "lat": 36.762199,
             "lng": 3.053796,
             "wilaya_id": 16
@@ -643,10 +688,19 @@ fetch(url, {
             "id": "saadna@sante.dz",
             "name": "saadna abdenour",
             "description": null,
-            "places": 150,
+            "places": 149,
             "lat": 36.191404,
             "lng": 5.403133,
             "wilaya_id": 19
+        },
+        {
+            "id": "TheniaHopital@sante.dz",
+            "name": "Hôpital de Thénia",
+            "description": "....",
+            "places": 150,
+            "lat": 36.726963,
+            "lng": 3.556,
+            "wilaya_id": 35
         }
     ]
 }
@@ -668,7 +722,7 @@ curl -X POST \
     "http://localhost/api/hospitals" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"id":"hospital@sante.dz","name":"hospital","wilaya_id":16,"password":"98776","description":".......................","address":"Alger","places":"151.171936"}'
+    -d '{"id":"hospital@sante.dz","name":"hospital","wilaya_id":16,"password":"98776","description":".......................","address":"Alger","places":150,"lat":-33.861034,"lng":151.171936}'
 
 ```
 
@@ -689,7 +743,9 @@ let body = {
     "password": "98776",
     "description": ".......................",
     "address": "Alger",
-    "places": "151.171936"
+    "places": 150,
+    "lat": -33.861034,
+    "lng": 151.171936
 }
 
 fetch(url, {
@@ -742,7 +798,9 @@ Parameter | Type | Status | Description
         `password` | string |  required  | The password.
         `description` | string |  optional  | a description of the Hospital.
         `address` | date |  optional  | address of the Hospital.
-        `places` | lng |  optional  | longitudes.
+        `places` | integer |  optional  | number of free places.
+        `lat` | float |  optional  | latitudes.
+        `lng` | float |  optional  | longitudes.
     
 <!-- END_0d4a62419cf95816fda538d56aad78f1 -->
 
@@ -1300,7 +1358,7 @@ curl -X POST \
     "http://localhost/api/laboratories" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"id":"labo@sante.dz","name":"labo","wilaya_id":16,"password":"98776","description":".......................","address":"quo"}'
+    -d '{"id":"labo@sante.dz","name":"labo","wilaya_id":16,"password":"98776","description":".......................","address":"soluta"}'
 
 ```
 
@@ -1320,7 +1378,7 @@ let body = {
     "wilaya_id": 16,
     "password": "98776",
     "description": ".......................",
-    "address": "quo"
+    "address": "soluta"
 }
 
 fetch(url, {
@@ -1559,6 +1617,328 @@ fetch(url, {
 
 <!-- END_e6e4034921b80408432429d41a17cfca -->
 
+#Paramedic management
+
+
+APIs for managing Paramedic
+<!-- START_a46572c33afb484c209c5c2c710e2a0a -->
+## Display a listing of the resource.
+
+> Example request:
+
+```bash
+curl -X GET \
+    -G "http://localhost/api/paramedics" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "http://localhost/api/paramedics"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "data": []
+}
+```
+
+### HTTP Request
+`GET api/paramedics`
+
+
+<!-- END_a46572c33afb484c209c5c2c710e2a0a -->
+
+<!-- START_96748c60f043f7837cd789041d466db0 -->
+## Store a newly created resource in storage.
+
+> Example request:
+
+```bash
+curl -X POST \
+    "http://localhost/api/paramedics" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"email":"abc@sante.dz","password":"..............","establishment":"\"pompier alger\""}'
+
+```
+
+```javascript
+const url = new URL(
+    "http://localhost/api/paramedics"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "email": "abc@sante.dz",
+    "password": "..............",
+    "establishment": "\"pompier alger\""
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "data": {
+        "id": 1,
+        "email": "abc@sante.dz",
+        "establishment": "pompier alger"
+    }
+}
+```
+> Example response (500):
+
+```json
+{
+    "status": "error",
+    "message": {
+        "password": [
+            "The password is required."
+        ]
+    }
+}
+```
+
+### HTTP Request
+`POST api/paramedics`
+
+#### Body Parameters
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    `email` | string |  required  | email.
+        `password` | string |  required  | password .
+        `establishment` | string |  optional  | password .
+    
+<!-- END_96748c60f043f7837cd789041d466db0 -->
+
+<!-- START_4c4554ca96f1a21435bef21b276550be -->
+## Display the specified resource.
+
+> Example request:
+
+```bash
+curl -X GET \
+    -G "http://localhost/api/paramedics/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "http://localhost/api/paramedics/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "data": {
+        "id": 1,
+        "email": "abc@sante.dz",
+        "establishment": "pompier alger"
+    }
+}
+```
+> Example response (404):
+
+```json
+{
+    "status": "error",
+    "message": "paramedic not found"
+}
+```
+
+### HTTP Request
+`GET api/paramedics/{paramedic}`
+
+
+<!-- END_4c4554ca96f1a21435bef21b276550be -->
+
+<!-- START_a1cdacdbaffe03b46be56394044b4ef3 -->
+## Remove the specified resource from storage.
+
+> Example request:
+
+```bash
+curl -X DELETE \
+    "http://localhost/api/paramedics/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "http://localhost/api/paramedics/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "status": "success",
+    "message": "paramedic deleted"
+}
+```
+> Example response (404):
+
+```json
+{
+    "status": "error",
+    "message": "paramedic not found"
+}
+```
+> Example response (500):
+
+```json
+{
+    "status": "error",
+    "message": "Database server error"
+}
+```
+
+### HTTP Request
+`DELETE api/paramedics/{paramedic}`
+
+
+<!-- END_a1cdacdbaffe03b46be56394044b4ef3 -->
+
+<!-- START_fe3ec8b5aea4f0f91099afd317b9cb34 -->
+## Login Paramedic
+
+> Example request:
+
+```bash
+curl -X POST \
+    "http://localhost/api/login/paramedic" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"email":"abc@sante.dz","password":".............."}'
+
+```
+
+```javascript
+const url = new URL(
+    "http://localhost/api/login/paramedic"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "email": "abc@sante.dz",
+    "password": ".............."
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "data": {
+        "id": 1,
+        "email": "abc@sante.dz",
+        "establishment": "pompier alger"
+    }
+}
+```
+> Example response (404):
+
+```json
+{
+    "status": "error",
+    "message": "Paramedic not found"
+}
+```
+> Example response (500):
+
+```json
+{
+    "status": "error",
+    "message": "Wrong pass word"
+}
+```
+
+### HTTP Request
+`POST api/login/paramedic`
+
+#### Body Parameters
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    `email` | string |  required  | email.
+        `password` | string |  required  | password .
+    
+<!-- END_fe3ec8b5aea4f0f91099afd317b9cb34 -->
+
 #Patients management
 
 
@@ -1605,7 +1985,9 @@ fetch(url, {
             "last_name": "bouteflika",
             "phone": "0666666666",
             "email": null,
-            "address": null
+            "address": null,
+            "gender": 1,
+            "birth_day": "1960-06-26"
         },
         {
             "id": 2,
@@ -1613,7 +1995,9 @@ fetch(url, {
             "last_name": "trump",
             "phone": null,
             "email": null,
-            "address": null
+            "address": null,
+            "gender": 1,
+            "birth_day": "1960-06-26"
         },
         {
             "id": 3,
@@ -1621,7 +2005,19 @@ fetch(url, {
             "last_name": "sellal",
             "phone": "07777777777",
             "email": null,
-            "address": null
+            "address": null,
+            "gender": 1,
+            "birth_day": "1960-06-26"
+        },
+        {
+            "id": 4,
+            "first_name": "Narimane",
+            "last_name": "Hennouni",
+            "phone": null,
+            "email": "hn_hennouni",
+            "address": "25 Rue de la paix",
+            "gender": 1,
+            "birth_day": "1960-06-26"
         }
     ]
 }
@@ -1643,7 +2039,7 @@ curl -X POST \
     "http://localhost/api/patients" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"first_name":"mohamed","last_name":"habi","phone":"16 98 7767 89","address":"setif","email":"ministere@sante.dz","password":".............."}'
+    -d '{"first_name":"mohamed","last_name":"habi","birth_day":"1999-12-11","gender":true,"phone":"16 98 7767 89","address":"setif","email":"ministere@sante.dz","password":".............."}'
 
 ```
 
@@ -1660,6 +2056,8 @@ let headers = {
 let body = {
     "first_name": "mohamed",
     "last_name": "habi",
+    "birth_day": "1999-12-11",
+    "gender": true,
     "phone": "16 98 7767 89",
     "address": "setif",
     "email": "ministere@sante.dz",
@@ -1679,16 +2077,7 @@ fetch(url, {
 > Example response (200):
 
 ```json
-{
-    "data": {
-        "id": 1,
-        "first_name": "aziz",
-        "last_name": "boutef",
-        "phone": "07779261738",
-        "email": null,
-        "address": null
-    }
-}
+null
 ```
 > Example response (500):
 
@@ -1711,6 +2100,8 @@ Parameter | Type | Status | Description
 --------- | ------- | ------- | ------- | -----------
     `first_name` | string |  required  | first_name .
         `last_name` | string |  required  | last_name.
+        `birth_day` | date |  required  | The birth day of the patient.
+        `gender` | boolean |  required  | The gender (1=male) of the patient.
         `phone` | string |  optional  | phone number.
         `address` | string |  optional  | The address.
         `email` | string |  optional  | email.
@@ -1752,16 +2143,7 @@ fetch(url, {
 > Example response (200):
 
 ```json
-{
-    "data": {
-        "id": 1,
-        "first_name": "aziz",
-        "last_name": "boutef",
-        "phone": "07779261738",
-        "email": null,
-        "address": null
-    }
-}
+null
 ```
 > Example response (404):
 
@@ -1812,16 +2194,7 @@ fetch(url, {
 > Example response (200):
 
 ```json
-{
-    "data": {
-        "id": 1,
-        "first_name": "aziz",
-        "last_name": "boutef",
-        "phone": "07779261738",
-        "email": null,
-        "address": null
-    }
-}
+null
 ```
 > Example response (404):
 

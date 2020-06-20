@@ -588,10 +588,55 @@ fetch(url, {
 <pre><code class="language-json">{
     "data": [
         {
+            "id": "boudgheneHopital@sante.dz",
+            "name": "hopital de boudghene Telemcen",
+            "description": "....",
+            "places": 150,
+            "lat": 34.873035,
+            "lng": 1.320939,
+            "wilaya_id": 13
+        },
+        {
+            "id": "CHUTiziOuzou@sante.dz",
+            "name": "CHU de Tizi Ouzou",
+            "description": "....",
+            "places": 150,
+            "lat": 36.726739,
+            "lng": 4.065606,
+            "wilaya_id": 15
+        },
+        {
+            "id": "DjeghriMokhtarErriad@sante.dz",
+            "name": "Djeghri Mokhtar Erriad",
+            "description": "....",
+            "places": 150,
+            "lat": 36.359726,
+            "lng": 6.652577,
+            "wilaya_id": 25
+        },
+        {
+            "id": "frantzfanon@sante.dz",
+            "name": "Frantz Fanon",
+            "description": "....",
+            "places": 150,
+            "lat": 36.756377,
+            "lng": 5.083535,
+            "wilaya_id": 6
+        },
+        {
+            "id": "OranHopital@sante.dz",
+            "name": "hopital Oran",
+            "description": "....",
+            "places": 150,
+            "lat": 35.694071,
+            "lng": -0.642306,
+            "wilaya_id": 31
+        },
+        {
             "id": "pacha@sante.dz",
             "name": "mustapha pacha",
             "description": null,
-            "places": 151,
+            "places": 129,
             "lat": 36.762199,
             "lng": 3.053796,
             "wilaya_id": 16
@@ -600,10 +645,19 @@ fetch(url, {
             "id": "saadna@sante.dz",
             "name": "saadna abdenour",
             "description": null,
-            "places": 150,
+            "places": 149,
             "lat": 36.191404,
             "lng": 5.403133,
             "wilaya_id": 19
+        },
+        {
+            "id": "TheniaHopital@sante.dz",
+            "name": "Hôpital de Thénia",
+            "description": "....",
+            "places": 150,
+            "lat": 36.726963,
+            "lng": 3.556,
+            "wilaya_id": 35
         }
     ]
 }</code></pre>
@@ -619,7 +673,7 @@ fetch(url, {
     "http://localhost/api/hospitals" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"id":"hospital@sante.dz","name":"hospital","wilaya_id":16,"password":"98776","description":".......................","address":"Alger","places":"151.171936"}'
+    -d '{"id":"hospital@sante.dz","name":"hospital","wilaya_id":16,"password":"98776","description":".......................","address":"Alger","places":150,"lat":-33.861034,"lng":151.171936}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/hospitals"
@@ -637,7 +691,9 @@ let body = {
     "password": "98776",
     "description": ".......................",
     "address": "Alger",
-    "places": "151.171936"
+    "places": 150,
+    "lat": -33.861034,
+    "lng": 151.171936
 }
 
 fetch(url, {
@@ -723,7 +779,19 @@ fetch(url, {
 </tr>
 <tr>
 <td><code>places</code></td>
-<td>lng</td>
+<td>integer</td>
+<td>optional</td>
+<td>number of free places.</td>
+</tr>
+<tr>
+<td><code>lat</code></td>
+<td>float</td>
+<td>optional</td>
+<td>latitudes.</td>
+</tr>
+<tr>
+<td><code>lng</code></td>
+<td>float</td>
 <td>optional</td>
 <td>longitudes.</td>
 </tr>
@@ -1253,7 +1321,7 @@ fetch(url, {
     "http://localhost/api/laboratories" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"id":"labo@sante.dz","name":"labo","wilaya_id":16,"password":"98776","description":".......................","address":"quo"}'
+    -d '{"id":"labo@sante.dz","name":"labo","wilaya_id":16,"password":"98776","description":".......................","address":"soluta"}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/laboratories"
@@ -1270,7 +1338,7 @@ let body = {
     "wilaya_id": 16,
     "password": "98776",
     "description": ".......................",
-    "address": "quo"
+    "address": "soluta"
 }
 
 fetch(url, {
@@ -1499,6 +1567,305 @@ fetch(url, {
 <h3>HTTP Request</h3>
 <p><code>POST api/login/laboratory</code></p>
 <!-- END_e6e4034921b80408432429d41a17cfca -->
+<h1>Paramedic management</h1>
+<p>APIs for managing Paramedic</p>
+<!-- START_a46572c33afb484c209c5c2c710e2a0a -->
+<h2>Display a listing of the resource.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/api/paramedics" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/paramedics"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": []
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/paramedics</code></p>
+<!-- END_a46572c33afb484c209c5c2c710e2a0a -->
+<!-- START_96748c60f043f7837cd789041d466db0 -->
+<h2>Store a newly created resource in storage.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://localhost/api/paramedics" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"email":"abc@sante.dz","password":"..............","establishment":"\"pompier alger\""}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/paramedics"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "email": "abc@sante.dz",
+    "password": "..............",
+    "establishment": "\"pompier alger\""
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": {
+        "id": 1,
+        "email": "abc@sante.dz",
+        "establishment": "pompier alger"
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (500):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": {
+        "password": [
+            "The password is required."
+        ]
+    }
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/paramedics</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>email</code></td>
+<td>string</td>
+<td>required</td>
+<td>email.</td>
+</tr>
+<tr>
+<td><code>password</code></td>
+<td>string</td>
+<td>required</td>
+<td>password .</td>
+</tr>
+<tr>
+<td><code>establishment</code></td>
+<td>string</td>
+<td>optional</td>
+<td>password .</td>
+</tr>
+</tbody>
+</table>
+<!-- END_96748c60f043f7837cd789041d466db0 -->
+<!-- START_4c4554ca96f1a21435bef21b276550be -->
+<h2>Display the specified resource.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/api/paramedics/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/paramedics/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": {
+        "id": 1,
+        "email": "abc@sante.dz",
+        "establishment": "pompier alger"
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": "paramedic not found"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/paramedics/{paramedic}</code></p>
+<!-- END_4c4554ca96f1a21435bef21b276550be -->
+<!-- START_a1cdacdbaffe03b46be56394044b4ef3 -->
+<h2>Remove the specified resource from storage.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE \
+    "http://localhost/api/paramedics/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/paramedics/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "success",
+    "message": "paramedic deleted"
+}</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": "paramedic not found"
+}</code></pre>
+<blockquote>
+<p>Example response (500):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": "Database server error"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>DELETE api/paramedics/{paramedic}</code></p>
+<!-- END_a1cdacdbaffe03b46be56394044b4ef3 -->
+<!-- START_fe3ec8b5aea4f0f91099afd317b9cb34 -->
+<h2>Login Paramedic</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://localhost/api/login/paramedic" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"email":"abc@sante.dz","password":".............."}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/login/paramedic"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "email": "abc@sante.dz",
+    "password": ".............."
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": {
+        "id": 1,
+        "email": "abc@sante.dz",
+        "establishment": "pompier alger"
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": "Paramedic not found"
+}</code></pre>
+<blockquote>
+<p>Example response (500):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "error",
+    "message": "Wrong pass word"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/login/paramedic</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>email</code></td>
+<td>string</td>
+<td>required</td>
+<td>email.</td>
+</tr>
+<tr>
+<td><code>password</code></td>
+<td>string</td>
+<td>required</td>
+<td>password .</td>
+</tr>
+</tbody>
+</table>
+<!-- END_fe3ec8b5aea4f0f91099afd317b9cb34 -->
 <h1>Patients management</h1>
 <p>APIs for managing Patient</p>
 <!-- START_cdf5e02e9b913556f9304546d59e6c56 -->
@@ -1536,7 +1903,9 @@ fetch(url, {
             "last_name": "bouteflika",
             "phone": "0666666666",
             "email": null,
-            "address": null
+            "address": null,
+            "gender": 1,
+            "birth_day": "1960-06-26"
         },
         {
             "id": 2,
@@ -1544,7 +1913,9 @@ fetch(url, {
             "last_name": "trump",
             "phone": null,
             "email": null,
-            "address": null
+            "address": null,
+            "gender": 1,
+            "birth_day": "1960-06-26"
         },
         {
             "id": 3,
@@ -1552,7 +1923,19 @@ fetch(url, {
             "last_name": "sellal",
             "phone": "07777777777",
             "email": null,
-            "address": null
+            "address": null,
+            "gender": 1,
+            "birth_day": "1960-06-26"
+        },
+        {
+            "id": 4,
+            "first_name": "Narimane",
+            "last_name": "Hennouni",
+            "phone": null,
+            "email": "hn_hennouni",
+            "address": "25 Rue de la paix",
+            "gender": 1,
+            "birth_day": "1960-06-26"
         }
     ]
 }</code></pre>
@@ -1568,7 +1951,7 @@ fetch(url, {
     "http://localhost/api/patients" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"first_name":"mohamed","last_name":"habi","phone":"16 98 7767 89","address":"setif","email":"ministere@sante.dz","password":".............."}'
+    -d '{"first_name":"mohamed","last_name":"habi","birth_day":"1999-12-11","gender":true,"phone":"16 98 7767 89","address":"setif","email":"ministere@sante.dz","password":".............."}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/patients"
@@ -1582,6 +1965,8 @@ let headers = {
 let body = {
     "first_name": "mohamed",
     "last_name": "habi",
+    "birth_day": "1999-12-11",
+    "gender": true,
     "phone": "16 98 7767 89",
     "address": "setif",
     "email": "ministere@sante.dz",
@@ -1598,16 +1983,7 @@ fetch(url, {
 <blockquote>
 <p>Example response (200):</p>
 </blockquote>
-<pre><code class="language-json">{
-    "data": {
-        "id": 1,
-        "first_name": "aziz",
-        "last_name": "boutef",
-        "phone": "07779261738",
-        "email": null,
-        "address": null
-    }
-}</code></pre>
+<pre><code class="language-json">null</code></pre>
 <blockquote>
 <p>Example response (500):</p>
 </blockquote>
@@ -1643,6 +2019,18 @@ fetch(url, {
 <td>string</td>
 <td>required</td>
 <td>last_name.</td>
+</tr>
+<tr>
+<td><code>birth_day</code></td>
+<td>date</td>
+<td>required</td>
+<td>The birth day of the patient.</td>
+</tr>
+<tr>
+<td><code>gender</code></td>
+<td>boolean</td>
+<td>required</td>
+<td>The gender (1=male) of the patient.</td>
 </tr>
 <tr>
 <td><code>phone</code></td>
@@ -1698,16 +2086,7 @@ fetch(url, {
 <blockquote>
 <p>Example response (200):</p>
 </blockquote>
-<pre><code class="language-json">{
-    "data": {
-        "id": 1,
-        "first_name": "aziz",
-        "last_name": "boutef",
-        "phone": "07779261738",
-        "email": null,
-        "address": null
-    }
-}</code></pre>
+<pre><code class="language-json">null</code></pre>
 <blockquote>
 <p>Example response (404):</p>
 </blockquote>
@@ -1745,16 +2124,7 @@ fetch(url, {
 <blockquote>
 <p>Example response (200):</p>
 </blockquote>
-<pre><code class="language-json">{
-    "data": {
-        "id": 1,
-        "first_name": "aziz",
-        "last_name": "boutef",
-        "phone": "07779261738",
-        "email": null,
-        "address": null
-    }
-}</code></pre>
+<pre><code class="language-json">null</code></pre>
 <blockquote>
 <p>Example response (404):</p>
 </blockquote>

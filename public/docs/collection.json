@@ -2,7 +2,7 @@
     "variables": [],
     "info": {
         "name": "Laravel API",
-        "_postman_id": "27096a81-9e44-4687-9ef2-8e4f2ef79f78",
+        "_postman_id": "cac555e1-0bd9-4df3-ae99-b80bf241ff1d",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.0.0\/collection.json"
     },
@@ -325,7 +325,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"id\": \"hospital@sante.dz\",\n    \"name\": \"hospital\",\n    \"wilaya_id\": 16,\n    \"password\": \"98776\",\n    \"description\": \".......................\",\n    \"address\": \"Alger\",\n    \"places\": \"151.171936\"\n}"
+                            "raw": "{\n    \"id\": \"hospital@sante.dz\",\n    \"name\": \"hospital\",\n    \"wilaya_id\": 16,\n    \"password\": \"98776\",\n    \"description\": \".......................\",\n    \"address\": \"Alger\",\n    \"places\": 150,\n    \"lat\": -33.861034,\n    \"lng\": 151.171936\n}"
                         },
                         "description": "",
                         "response": []
@@ -583,7 +583,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"id\": \"labo@sante.dz\",\n    \"name\": \"labo\",\n    \"wilaya_id\": 16,\n    \"password\": \"98776\",\n    \"description\": \".......................\",\n    \"address\": \"quo\"\n}"
+                            "raw": "{\n    \"id\": \"labo@sante.dz\",\n    \"name\": \"labo\",\n    \"wilaya_id\": 16,\n    \"password\": \"98776\",\n    \"description\": \".......................\",\n    \"address\": \"soluta\"\n}"
                         },
                         "description": "",
                         "response": []
@@ -676,6 +676,152 @@
             ]
         },
         {
+            "name": "Paramedic management",
+            "description": "\nAPIs for managing Paramedic",
+            "item": [
+                {
+                    "name": "Display a listing of the resource.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost",
+                            "path": "api\/paramedics",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Store a newly created resource in storage.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost",
+                            "path": "api\/paramedics",
+                            "query": []
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"email\": \"abc@sante.dz\",\n    \"password\": \"..............\",\n    \"establishment\": \"\\\"pompier alger\\\"\"\n}"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Display the specified resource.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost",
+                            "path": "api\/paramedics\/:paramedic",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Remove the specified resource from storage.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost",
+                            "path": "api\/paramedics\/:paramedic",
+                            "query": []
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Login Paramedic",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost",
+                            "path": "api\/login\/paramedic",
+                            "query": []
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"email\": \"abc@sante.dz\",\n    \"password\": \"..............\"\n}"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                }
+            ]
+        },
+        {
             "name": "Patients management",
             "description": "\nAPIs for managing Patient",
             "item": [
@@ -729,7 +875,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"first_name\": \"mohamed\",\n    \"last_name\": \"habi\",\n    \"phone\": \"16 98 7767 89\",\n    \"address\": \"setif\",\n    \"email\": \"ministere@sante.dz\",\n    \"password\": \"..............\"\n}"
+                            "raw": "{\n    \"first_name\": \"mohamed\",\n    \"last_name\": \"habi\",\n    \"birth_day\": \"1999-12-11\",\n    \"gender\": true,\n    \"phone\": \"16 98 7767 89\",\n    \"address\": \"setif\",\n    \"email\": \"ministere@sante.dz\",\n    \"password\": \"..............\"\n}"
                         },
                         "description": "",
                         "response": []

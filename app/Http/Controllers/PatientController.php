@@ -35,7 +35,9 @@ class PatientController extends Controller
      *       "last_name": "boutef",
      *       "phone": "07779261738",
      *       "email": null,
-     *       "address": null
+     *       "address": null,
+     *       "gender":1,
+     *       "birth_day":1999-12-11
      *   }
      *}
      *@response 500 {
@@ -48,10 +50,14 @@ class PatientController extends Controller
      *}
      * @bodyParam first_name string required first_name . Example:mohamed
      * @bodyParam last_name string required last_name. Example: habi
+     * @bodyParam birth_day date required The birth day of the patient. Example: 1999-12-11
+     * @bodyParam gender boolean required The gender (1=male) of the patient. Example: 1
      * @bodyParam phone string  phone number. Example: 16 98 7767 89
      * @bodyParam address string  The address. Example: setif
      * @bodyParam email string  email. Example: ministere@sante.dz
      * @bodyParam password string password of the patient. Example: ..............
+     *
+     *
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -61,6 +67,8 @@ class PatientController extends Controller
         $validation =Validator::make($request->all(),[
             'first_name'=>"required|max:40|min:2",
             'last_name'=>"required|max:40|min:2",
+            'birth_day'=>"required",
+            'gender'=>"required",
             'password'=>"min:2",
             'email'=>"min:2",
             'address'=>"min:3",
@@ -76,6 +84,9 @@ class PatientController extends Controller
         $patient=new Patient();
         $patient->first_name= $request->first_name;
         $patient->last_name= $request->last_name;
+        $patient->gender= $request->gender;
+        $patient->birth_day= $request->birth_day;
+
         $patient->password=Hash::make($request->password);
         $patient->email= $request->email;
         $patient->address= $request->address;
@@ -95,7 +106,9 @@ class PatientController extends Controller
      *       "last_name": "boutef",
      *       "phone": "07779261738",
      *       "email": null,
-     *       "address": null
+     *       "address": null,
+     *       "gender":1,
+     *       "birth_day":1999-12-11
      *   }
      *}
      *@response 404 {
@@ -123,7 +136,9 @@ class PatientController extends Controller
      *       "last_name": "boutef",
      *       "phone": "07779261738",
      *       "email": null,
-     *       "address": null
+     *       "address": null,
+     *       "gender":1,
+     *       "birth_day":1999-12-11
      *   }
      *}
      *@response 404 {
@@ -173,7 +188,7 @@ class PatientController extends Controller
      *  "status": "error",
      *  "message": "Database server error"
      * }
-     * @param  int  $patient
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
