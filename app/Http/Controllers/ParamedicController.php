@@ -44,8 +44,8 @@ class ParamedicController extends Controller
             return response()->json(['status' => 'error','message' => 'Paramedic not found'],404);
         }else{
             //return Hash::make(($request->password));
-            if(Hash::check($request->password,$paramedic->first()->password)){
-                return new ParamedicResource($paramedic->first());
+            if(Hash::check($request->password,$paramedic->password)){
+                return new ParamedicResource($paramedic);
             }
           return response()->json(['status' => 'error','message' => 'Wrong pass word'],500);
         }
