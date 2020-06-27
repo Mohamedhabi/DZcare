@@ -1358,7 +1358,7 @@ curl -X POST \
     "http://localhost/api/laboratories" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"id":"labo@sante.dz","name":"labo","wilaya_id":16,"password":"98776","description":".......................","address":"ab"}'
+    -d '{"id":"labo@sante.dz","name":"labo","wilaya_id":16,"password":"98776","description":".......................","address":"dolore"}'
 
 ```
 
@@ -1378,7 +1378,7 @@ let body = {
     "wilaya_id": 16,
     "password": "98776",
     "description": ".......................",
-    "address": "ab"
+    "address": "dolore"
 }
 
 fetch(url, {
@@ -2415,7 +2415,7 @@ curl -X POST \
     "http://localhost/api/stat/new/wilaya" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"date1":"\"2020-06-15\"","date2":"16"}'
+    -d '{"date1":"\"2020-06-15\"","date2":"\"2020-06-16\"","id":16}'
 
 ```
 
@@ -2431,7 +2431,8 @@ let headers = {
 
 let body = {
     "date1": "\"2020-06-15\"",
-    "date2": "16"
+    "date2": "\"2020-06-16\"",
+    "id": 16
 }
 
 fetch(url, {
@@ -2466,7 +2467,8 @@ fetch(url, {
 Parameter | Type | Status | Description
 --------- | ------- | ------- | ------- | -----------
     `date1` | date |  required  | first date.
-        `date2` | id |  required  | id wilaya.
+        `date2` | date |  required  | 2nd date.
+        `id` | integer |  required  | id wilaya.
     
 <!-- END_98102936c38bb4d6cc1b63b779792364 -->
 

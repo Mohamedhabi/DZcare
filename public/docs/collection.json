@@ -2,7 +2,7 @@
     "variables": [],
     "info": {
         "name": "Laravel API",
-        "_postman_id": "33b65556-6093-4fd7-9072-c328874cb63f",
+        "_postman_id": "a38f4b77-30cc-46e3-8961-a44dfc27fd84",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.0.0\/collection.json"
     },
@@ -583,7 +583,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"id\": \"labo@sante.dz\",\n    \"name\": \"labo\",\n    \"wilaya_id\": 16,\n    \"password\": \"98776\",\n    \"description\": \".......................\",\n    \"address\": \"ab\"\n}"
+                            "raw": "{\n    \"id\": \"labo@sante.dz\",\n    \"name\": \"labo\",\n    \"wilaya_id\": 16,\n    \"password\": \"98776\",\n    \"description\": \".......................\",\n    \"address\": \"dolore\"\n}"
                         },
                         "description": "",
                         "response": []
@@ -1021,7 +1021,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"date1\": \"\\\"2020-06-15\\\"\",\n    \"date2\": \"16\"\n}"
+                            "raw": "{\n    \"date1\": \"\\\"2020-06-15\\\"\",\n    \"date2\": \"\\\"2020-06-16\\\"\",\n    \"id\": 16\n}"
                         },
                         "description": "",
                         "response": []
