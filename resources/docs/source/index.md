@@ -679,7 +679,7 @@ fetch(url, {
             "id": "pacha@sante.dz",
             "name": "mustapha pacha",
             "description": null,
-            "places": 129,
+            "places": 125,
             "lat": 36.762199,
             "lng": 3.053796,
             "wilaya_id": 16
@@ -1358,7 +1358,7 @@ curl -X POST \
     "http://localhost/api/laboratories" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"id":"labo@sante.dz","name":"labo","wilaya_id":16,"password":"98776","description":".......................","address":"soluta"}'
+    -d '{"id":"labo@sante.dz","name":"labo","wilaya_id":16,"password":"98776","description":".......................","address":"ab"}'
 
 ```
 
@@ -1378,7 +1378,7 @@ let body = {
     "wilaya_id": 16,
     "password": "98776",
     "description": ".......................",
-    "address": "soluta"
+    "address": "ab"
 }
 
 fetch(url, {
@@ -1656,7 +1656,28 @@ fetch(url, {
 
 ```json
 {
-    "data": []
+    "data": [
+        {
+            "id": 1,
+            "email": "abc@sante.dz",
+            "establishment": null
+        },
+        {
+            "id": 2,
+            "email": "paramed@sante.dz",
+            "establishment": "Pompiers Alger"
+        },
+        {
+            "id": 3,
+            "email": "exemple@sante.dz",
+            "establishment": "santé"
+        },
+        {
+            "id": 4,
+            "email": "paramed1@sante.dz",
+            "establishment": null
+        }
+    ]
 }
 ```
 
@@ -2018,6 +2039,46 @@ fetch(url, {
             "address": "25 Rue de la paix",
             "gender": 1,
             "birth_day": "1960-06-26"
+        },
+        {
+            "id": 5,
+            "first_name": "Nour",
+            "last_name": "El hassane",
+            "phone": "055",
+            "email": "hn_el_hassane@esi.dz",
+            "address": "bach jerrah",
+            "gender": 1,
+            "birth_day": "1999-12-11"
+        },
+        {
+            "id": 6,
+            "first_name": "Nour",
+            "last_name": "El hassane",
+            "phone": "055",
+            "email": "hn_el_hassane@esi.dz",
+            "address": "bach jerrah",
+            "gender": 1,
+            "birth_day": "1999-12-11"
+        },
+        {
+            "id": 7,
+            "first_name": "Nour",
+            "last_name": "El hassane",
+            "phone": "055",
+            "email": "hn ela",
+            "address": "bla bla",
+            "gender": 1,
+            "birth_day": "1999-12-11"
+        },
+        {
+            "id": 8,
+            "first_name": "Nour",
+            "last_name": "El hassane",
+            "phone": "055",
+            "email": "hn ela",
+            "address": "bla bla",
+            "gender": 1,
+            "birth_day": "1999-12-11"
         }
     ]
 }
@@ -2274,6 +2335,140 @@ fetch(url, {
 
 
 <!-- END_91030317441de3d43a948f7948db4fe7 -->
+
+#Statistics management
+
+
+APIs for managing Statistics
+<!-- START_fe6771f055f4dfd9dfcadf2a87baeb52 -->
+## Get statistics / dates
+
+> Example request:
+
+```bash
+curl -X POST \
+    "http://localhost/api/stat/new" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"date1":"\"2020-06-15\"","date2":"\"2020-06-16\""}'
+
+```
+
+```javascript
+const url = new URL(
+    "http://localhost/api/stat/new"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "date1": "\"2020-06-15\"",
+    "date2": "\"2020-06-16\""
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "result": [
+        {
+            "date": "2020-06-15",
+            "cured": "1",
+            "sick": "0",
+            "dead": "1"
+        }
+    ]
+}
+```
+
+### HTTP Request
+`POST api/stat/new`
+
+#### Body Parameters
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    `date1` | date |  required  | first date.
+        `date2` | date |  required  | 2nd date.
+    
+<!-- END_fe6771f055f4dfd9dfcadf2a87baeb52 -->
+
+<!-- START_98102936c38bb4d6cc1b63b779792364 -->
+## Get statistics / dates / wilaya
+
+> Example request:
+
+```bash
+curl -X POST \
+    "http://localhost/api/stat/new/wilaya" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"date1":"\"2020-06-15\"","date2":"16"}'
+
+```
+
+```javascript
+const url = new URL(
+    "http://localhost/api/stat/new/wilaya"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "date1": "\"2020-06-15\"",
+    "date2": "16"
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "result": [
+        {
+            "date": "2020-06-15",
+            "cured": "1",
+            "sick": "0",
+            "dead": "1"
+        }
+    ]
+}
+```
+
+### HTTP Request
+`POST api/stat/new/wilaya`
+
+#### Body Parameters
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    `date1` | date |  required  | first date.
+        `date2` | id |  required  | id wilaya.
+    
+<!-- END_98102936c38bb4d6cc1b63b779792364 -->
 
 #Tests management
 
@@ -3233,7 +3428,7 @@ fetch(url, {
             "patient_id": 2,
             "hospital_id": "pacha@sante.dz",
             "laboratory_id": null,
-            "cured": 0
+            "cured": 1
         }
     ]
 }
@@ -3528,19 +3723,20 @@ fetch(url, {
 
 ```json
 {
-    "cured": [],
+    "cured": [
+        {
+            "wilaya_id": 16,
+            "disease_id": "Covid_19",
+            "patient_id": 2,
+            "id": "pacha@sante.dz",
+            "cured": 1
+        }
+    ],
     "not_cured": [
         {
             "wilaya_id": 16,
             "disease_id": "Covid_19",
             "patient_id": 1,
-            "id": "pacha@sante.dz",
-            "cured": 0
-        },
-        {
-            "wilaya_id": 16,
-            "disease_id": "Covid_19",
-            "patient_id": 2,
             "id": "pacha@sante.dz",
             "cured": 0
         }

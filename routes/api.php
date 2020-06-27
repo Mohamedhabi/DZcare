@@ -44,6 +44,10 @@ Route::put('hospitals/allocate','HospitalController@take_aplace');
 Route::put('hospitals/free','HospitalController@free_aplace');
 Route::put('hospitals/coordinates','HospitalController@set_coordinates');
 
+Route::post('stat/new', 'StatController@new_cases');
+Route::post('stat/new/wilaya', 'StatController@new_cases_wilaya');
+
+
 
 
 
