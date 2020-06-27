@@ -70,7 +70,7 @@ class StatController extends Controller
      *}
      * @bodyParam date1 date required first date. Example: "2020-06-15"
      * @bodyParam date2 date required 2nd date. Example: "2020-06-16"
-     * @bodyParam date2 id required id wilaya. Example: 16
+     * @bodyParam id int required id wilaya. Example: 16
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
